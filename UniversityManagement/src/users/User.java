@@ -1,222 +1,114 @@
-package University Management;
+package users;
 
+import java.io.*;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Vector;
 
-/**
-* @generated
-*/
-public class User implements Observer {
-    
-    /**
-    * @generated
-    */
+import database.Database;
+import languageManagement.*;
+import utility.*;
+import researchWorks.Journal;
+
+public class User implements Observer, Serializable {
+	private static final long serialVersionUID = 1L;
+	private static int count = 0;
     private int userId;
-    
-    /**
-    * @generated
-    */
     private String name;
-    
-    /**
-    * @generated
-    */
     private String password;
+    private String journalNews ="";
+    private Vector<Message> messages;
+    {
+    	userId = (count++);
+    }
     
-    /**
-    * @generated
-    */
-    private boolean isResearcher;
+    public User() {
+	}
     
-    /**
-    * @generated
-    */
-    private String journalNews;
-    
-    /**
-    * @generated
-    */
-    private Message messages;
-    
-    
-    /**
-    * @generated
-    */
-    private News news;
-    
-    /**
-    * @generated
-    */
-    private UserDecorator userDecorator;
-    
-    /**
-    * @generated
-    */
-    private Message message;
-    
-    
-
-    /**
-    * @generated
-    */
-    private int getUserId() {
+	public User(String name, String password) {
+		this.name = name;
+		this.password = password;
+	}
+    public int getUserId() {
         return this.userId;
     }
-    
-    /**
-    * @generated
-    */
-    private int setUserId(Integer userId) {
-        this.userId = userId;
-    }
-    
-    
-    /**
-    * @generated
-    */
+
+//    private void setUserId(Integer userId) {
+//        this.userId = userId;
+//    }
+
     private String getName() {
         return this.name;
     }
-    
-    /**
-    * @generated
-    */
-    private String setName(String name) {
+ 
+    private void setName(String name) {
         this.name = name;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private String getPassword() {
+
+    public String getPassword() {
         return this.password;
     }
-    
-    /**
-    * @generated
-    */
-    private String setPassword(String password) {
+    private void setPassword(String password) {
         this.password = password;
     }
     
     
-    /**
-    * @generated
-    */
-    private boolean getIsResearcher() {
-        return this.isResearcher;
+//--------------- JOURNAL --------------- 
+	public void showJournalUpdates() {
+		System.out.println(journalNews);
+		journalNews = "";
+	}
+	
+	public void update(Observable o, Object arg) {
+        journalNews+= arg + "\n";
     }
-    
-    /**
-    * @generated
-    */
-    private boolean setIsResearcher(Boolean isResearcher) {
-        this.isResearcher = isResearcher;
+	public void subscribeToJournal(Journal journal) {
+        journal.addObserver(this);
     }
-    
-    
-    /**
-    * @generated
-    */
-    private String getJournalNews() {
-        return this.journalNews;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setJournalNews(String journalNews) {
-        this.journalNews = journalNews;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Message getMessages() {
-        return this.messages;
-    }
-    
-    /**
-    * @generated
-    */
-    private Message setMessages(Message messages) {
-        this.messages = messages;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public News getNews() {
-        return this.news;
-    }
-    
-    /**
-    * @generated
-    */
-    public News setNews(News news) {
-        this.news = news;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public UserDecorator getUserDecorator() {
-        return this.userDecorator;
-    }
-    
-    /**
-    * @generated
-    */
-    public UserDecorator setUserDecorator(UserDecorator userDecorator) {
-        this.userDecorator = userDecorator;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Message getMessage() {
-        return this.message;
-    }
-    
-    /**
-    * @generated
-    */
-    public Message setMessage(Message message) {
-        this.message = message;
-    }
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public int getUserId() {
-        //TODO
-        return 0;
+    public void unsubscribeFromJournal(Journal journal) {
+        journal.deleteObserver(this);
     }
     
-    /**
-    * @generated
-    */
-    public String getName() {
-        //TODO
-        return "";
-    }
+  //---------------------------------------- 
     
-    /**
-    * @generated
-    */
-    public String getPassword() {
-        //TODO
-        return "";
-    }
-    
+    //NeedFix
+	public void viewMessages() {
+		for(Message msg : messages) {
+			System.out.print(msg.getSender().getName() + " send a message to you [ " + msg.getDate() + " ] : \n "
+					+ msg.getMessageText());
+		}
+	}
+	 //NeedFix
+		public void viewNews() {
+			Vector<News> news = Database.getInstance().getNews();
+			for(News n : news) {
+				if(n.isPinned()) {
+					System.out.println(n.getTopic());
+					System.out.println(n.getContent());
+				}
+			}
+			for(News n : news) {
+				if(!n.isPinned()) {
+					System.out.println(n.getTopic());
+					System.out.println(n.getContent());
+				}
+			}
+		}
+	//NeedFix
+	public void changeLanguage() {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		try {
+			String lang_name;
+            lang_name = reader.readLine();
+            Language.getInstance().setLanguageName(lang_name);
+        } catch (IOException | InvalidLanguageException i) {
+            System.out.println("Error reading language name. Please try again.");
+        }
+	}
+	
+	public void showCommands() {
+		System.out.println("ERROR USER HAS NO COMMANDS");
+	}
     
 }

@@ -1,549 +1,257 @@
 package database;
 
+import users.*;
+import utility.*;
+import researchWorks.*;
 import java.io.Serializable;
 import java.util.Vector;
 
+
 public class Database implements Serializable{
-    
-    /**
-    * @generated
-    */
+
 	private static final long serialVersionUID = 1L;
-    
-    /**
-    * @generated
-    */
-    private Database instance;
-    
-    /**
-    * @generated
-    */
+    private static Database instance = new Database();
     private Vector users;
-    
-    /**
-    * @generated
-    */
     private Vector employees;
-    
-    /**
-    * @generated
-    */
     private Vector students;
-    
-    /**
-    * @generated
-    */
     private Vector graduateStudents;
-    
-    /**
-    * @generated
-    */
     private Vector admins;
-    
-    /**
-    * @generated
-    */
     private Vector managers;
-    
-    /**
-    * @generated
-    */
     private Vector teachers;
-    
-    /**
-    * @generated
-    */
     private Vector deans;
-    
-    /**
-    * @generated
-    */
-    private Vector teachSupportSpecialosts;
-    
-    /**
-    * @generated
-    */
+    private Vector techSupportSpecialists;
     private Vector courses;
-    
-    /**
-    * @generated
-    */
     private Vector coursesForRegistration;
-    
-    /**
-    * @generated
-    */
     private Vector news;
-    
-    /**
-    * @generated
-    */
     private Vector organizations;
-    
-    /**
-    * @generated
-    */
     private Vector researchers;
-    
-    /**
-    * @generated
-    */
     private Vector messages;
-    
-    /**
-    * @generated
-    */
     private Vector marks;
-    
-    /**
-    * @generated
-    */
     private Vector complaints;
-    
-    /**
-    * @generated
-    */
     private Vector researchPapers;
-    
-    /**
-    * @generated
-    */
     private Vector researchProjects;
-    
-    /**
-    * @generated
-    */
     private Vector journals;
-    
-    /**
-    * @generated
-    */
     private Vector lessons;
-    
-    /**
-    * @generated
-    */
     private Vector orders;
-    
-    /**
-    * @generated
-    */
     private Vector logs;
-    
-    /**
-    * @generated
-    */
     private Vector deanRequests;
-    
-    /**
-    * @generated
-    */
     private Vector managerRequests;
-    
-    
-   
-    
-    
-    /**
-    * @generated
-    */
-    private Database getInstance() {
-        return this.instance;
+
+    public static Database getInstance() {
+        return instance;
     }
     
-    /**
-    * @generated
-    */
- 
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getUsers() {
+    public Vector getUsers() {
         return this.users;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setUsers(Vector users) {
+
+    public void setUsers(Vector users) {
         this.users = users;
     }
     
-    
-    /**
-    * @generated
-    */
-    private Vector getEmployees() {
+    public Vector getEmployees() {
         return this.employees;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setEmployees(Vector employees) {
+
+    public void setEmployees(Vector employees) {
         this.employees = employees;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getStudents() {
+
+    public Vector getStudents() {
         return this.students;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setStudents(Vector students) {
+
+    public void setStudents(Vector students) {
         this.students = students;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getGraduateStudents() {
+
+    public Vector getGraduateStudents() {
         return this.graduateStudents;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setGraduateStudents(Vector graduateStudents) {
+
+    public void setGraduateStudents(Vector graduateStudents) {
         this.graduateStudents = graduateStudents;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getAdmins() {
+
+    public Vector getAdmins() {
         return this.admins;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setAdmins(Vector admins) {
+
+    public void setAdmins(Vector admins) {
         this.admins = admins;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getManagers() {
+
+    public Vector getManagers() {
         return this.managers;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setManagers(Vector managers) {
+
+    public void setManagers(Vector managers) {
         this.managers = managers;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getTeachers() {
+
+    public Vector getTeachers() {
         return this.teachers;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setTeachers(Vector teachers) {
+
+    public void setTeachers(Vector teachers) {
         this.teachers = teachers;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getDeans() {
+
+    public Vector getDeans() {
         return this.deans;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setDeans(Vector deans) {
+
+    public void setDeans(Vector deans) {
         this.deans = deans;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getTeachSupportSpecialosts() {
-        return this.teachSupportSpecialosts;
+
+    public Vector getTechSupportSpecialists() {
+        return this.techSupportSpecialists;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setTeachSupportSpecialosts(Vector teachSupportSpecialosts) {
-        this.teachSupportSpecialosts = teachSupportSpecialosts;
+
+    public void setTechSupportSpecialists(Vector techSupportSpecialists) {
+        this.techSupportSpecialists = techSupportSpecialists;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getCourses() {
+
+    public Vector getCourses() {
         return this.courses;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setCourses(Vector courses) {
+    public void setCourses(Vector courses) {
         this.courses = courses;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getCoursesForRegistration() {
+
+    public Vector getCoursesForRegistration() {
         return this.coursesForRegistration;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setCoursesForRegistration(Vector coursesForRegistration) {
+
+    public void setCoursesForRegistration(Vector coursesForRegistration) {
         this.coursesForRegistration = coursesForRegistration;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getNews() {
+
+    public Vector getNews() {
         return this.news;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setNews(Vector news) {
+
+    public void setNews(Vector news) {
         this.news = news;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getOrganizations() {
+
+    public Vector getOrganizations() {
         return this.organizations;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setOrganizations(Vector organizations) {
+
+    public void setOrganizations(Vector organizations) {
         this.organizations = organizations;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getResearchers() {
+
+    public Vector getResearchers() {
         return this.researchers;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setResearchers(Vector researchers) {
+
+    public void setResearchers(Vector researchers) {
         this.researchers = researchers;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getMessages() {
+
+    public Vector getMessages() {
         return this.messages;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setMessages(Vector messages) {
+
+    public void setMessages(Vector messages) {
         this.messages = messages;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getMarks() {
+
+    public Vector getMarks() {
         return this.marks;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setMarks(Vector marks) {
+
+    public void setMarks(Vector marks) {
         this.marks = marks;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getComplaints() {
+
+    public Vector getComplaints() {
         return this.complaints;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setComplaints(Vector complaints) {
+
+    public void setComplaints(Vector complaints) {
         this.complaints = complaints;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getResearchPapers() {
+ 
+    public Vector getResearchPapers() {
         return this.researchPapers;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setResearchPapers(Vector researchPapers) {
+
+    public void setResearchPapers(Vector researchPapers) {
         this.researchPapers = researchPapers;
     }
     
-    
-    /**
-    * @generated
-    */
-    private Vector getResearchProjects() {
+    public Vector getResearchProjects() {
         return this.researchProjects;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setResearchProjects(Vector researchProjects) {
+
+    public void setResearchProjects(Vector researchProjects) {
         this.researchProjects = researchProjects;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getJournals() {
+
+    public Vector getJournals() {
         return this.journals;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setJournals(Vector journals) {
+
+    public void setJournals(Vector journals) {
         this.journals = journals;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getLessons() {
+
+    public Vector getLessons() {
         return this.lessons;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setLessons(Vector lessons) {
+
+    public void setLessons(Vector lessons) {
         this.lessons = lessons;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getOrders() {
+
+    public Vector getOrders() {
         return this.orders;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setOrders(Vector orders) {
+
+    public void setOrders(Vector orders) {
         this.orders = orders;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getLogs() {
+
+    public Vector getLogs() {
         return this.logs;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setLogs(Vector logs) {
+
+    public void setLogs(Vector logs) {
         this.logs = logs;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getDeanRequests() {
+
+    public Vector getDeanRequests() {
         return this.deanRequests;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setDeanRequests(Vector deanRequests) {
+
+    public void setDeanRequests(Vector deanRequests) {
         this.deanRequests = deanRequests;
     }
     
-    
-    /**
-    * @generated
-    */
-    private Vector getManagerRequests() {
+    public Vector getManagerRequests() {
         return this.managerRequests;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setManagerRequests(Vector managerRequests) {
+
+    public void setManagerRequests(Vector managerRequests) {
         this.managerRequests = managerRequests;
     }
-    
-    
-    
-    
+       
 
     //                          Operations                                  
-    
-    /**
-    * @generated
-    */
+
     public boolean isAdmin() {
         //TODO
         return false;
     }
-    
+    public void addLog() {
+
+    }
+    public void printLogs(User u) {
+    	
+    };
     
 }
