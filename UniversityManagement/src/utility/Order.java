@@ -1,98 +1,37 @@
-package University Management;
+package utility;
 
 
-/**
-* @generated
-*/
 public class Order {
-    
-    /**
-    * @generated
-    */
-    private int orderId;
-    
-    /**
-    * @generated
-    */
-    private String orderText;
-    
-    /**
-    * @generated
-    */
-    private Status orderStatus;
-    
-    
-    /**
-    * @generated
-    */
-    private TechSupportSpecialist techSupportSpecialist;
-    
-    
-
-    /**
-    * @generated
-    */
-    private int getOrderId() {
-        return this.orderId;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getOrderText() {
-        return this.orderText;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setOrderText(String orderText) {
-        this.orderText = orderText;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Status getOrderStatus() {
-        return this.orderStatus;
-    }
-    
-    /**
-    * @generated
-    */
-    private Status setOrderStatus(Status orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public TechSupportSpecialist getTechSupportSpecialist() {
-        return this.techSupportSpecialist;
-    }
-    
-    /**
-    * @generated
-    */
-    public TechSupportSpecialist setTechSupportSpecialist(TechSupportSpecialist techSupportSpecialist) {
-        this.techSupportSpecialist = techSupportSpecialist;
-    }
-    
-    
-    
-
-    //                          Operations                                  
-    
-    
+	private int orderId;
+	private static int counterId;
+	private String orderText;
+	private Status orderStatus;
+	{
+		orderId = counterId++;
+	}
+	
+	public Order() {
+	}
+	public Order(String orderText) {
+		this.orderText = orderText;
+	}
+	public int getOrderId() {
+		return this.orderId;
+	}
+	public void setMessageId(int orderId) {
+		this.orderId=orderId;
+	}
+	
+	public String getOrderText() {
+		return this.orderText;
+	}
+	public void setOrderText(String orderText) {
+		this.orderText=orderText;
+	}
+	public Status getStatus() {
+		return this.orderStatus;
+	}
+	public void setOrderText(Status orderStatus ) {
+		this.orderStatus=orderStatus;
+	}
 }

@@ -1,246 +1,49 @@
-package researchWorks;
+package researchWorks; 
+ 
+import java.util.Date; 
+import java.util.Vector;
 
-
-/**
-* @generated
-*/
-public class ResearchPaper {
-    
-    /**
-    * @generated
-    */
-    private int paperId;
-    
-    /**
-    * @generated
-    */
-    private String title;
-    
-    /**
-    * @generated
-    */
-    private Vector authors;
-    
-    /**
-    * @generated
-    */
-    private int numberOfPages;
-    
-    /**
-    * @generated
-    */
-    private Date publicationDate;
-    
-    /**
-    * @generated
-    */
-    private Journal journal;
-    
-    /**
-    * @generated
-    */
-    private int citationsNumber;
-    
-    /**
-    * @generated
-    */
-    private String doi;
-    
-    
-    /**
-    * @generated
-    */
-    private Journal journal2;
-    
-    /**
-    * @generated
-    */
-    private ResearcherDecorator researcherDecorator;
-    
-    /**
-    * @generated
-    */
-    private ResearchProject researchProject;
-    
-    
-
-    /**
-    * @generated
-    */
-    private int getPaperId() {
-        return this.paperId;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setPaperId(Integer paperId) {
-        this.paperId = paperId;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getTitle() {
-        return this.title;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setTitle(String title) {
-        this.title = title;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getAuthors() {
-        return this.authors;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector setAuthors(Vector authors) {
-        this.authors = authors;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private int getNumberOfPages() {
-        return this.numberOfPages;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setNumberOfPages(Integer numberOfPages) {
-        this.numberOfPages = numberOfPages;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Date getPublicationDate() {
-        return this.publicationDate;
-    }
-    
-    /**
-    * @generated
-    */
-    private Date setPublicationDate(Date publicationDate) {
-        this.publicationDate = publicationDate;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Journal getJournal() {
-        return this.journal;
-    }
-    
-    /**
-    * @generated
-    */
-    private Journal setJournal(Journal journal) {
-        this.journal = journal;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private int getCitationsNumber() {
-        return this.citationsNumber;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setCitationsNumber(Integer citationsNumber) {
-        this.citationsNumber = citationsNumber;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getDoi() {
-        return this.doi;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setDoi(String doi) {
-        this.doi = doi;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public ResearcherDecorator getResearcherDecorator() {
-        return this.researcherDecorator;
-    }
-    
-    /**
-    * @generated
-    */
-    public ResearcherDecorator setResearcherDecorator(ResearcherDecorator researcherDecorator) {
-        this.researcherDecorator = researcherDecorator;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public ResearchProject getResearchProject() {
-        return this.researchProject;
-    }
-    
-    /**
-    * @generated
-    */
-    public ResearchProject setResearchProject(ResearchProject researchProject) {
-        this.researchProject = researchProject;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Journal getJournal2() {
-        return this.journal2;
-    }
-    
-    /**
-    * @generated
-    */
-    public Journal setJournal2(Journal journal2) {
-        this.journal2 = journal2;
-    }
-    
-    
-    
-
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public String getCitation() {
-        //TODO
-        return "";
-    }
-    
-    
+import users.ResearcherDecorator; 
+ 
+public class ResearchPaper { 
+	 private int paperid; 
+	 private String title; 
+	  
+	 private Vector<ResearcherDecorator> authors; 
+	 private int NumberOfPages; 
+	 private Date publicationDate; 
+	 private int citationsNumber; 
+	 private String doi; 
+	  
+	 public ResearchPaper(int paperid, String title, Vector<ResearcherDecorator> authors, int numberOfPages, 
+	   Date publicationDate, int citationsNumber, String doi) { 
+	  this.paperid = paperid; 
+	  this.title = title; 
+	  this.authors = authors; 
+	  this.NumberOfPages = numberOfPages; 
+	  this.publicationDate = publicationDate; 
+	  this.citationsNumber = citationsNumber; 
+	  this.doi = doi; 
+	 } 
+	 public int getCitation(String s) { 
+	//  we could add here the algorithm that would search the given string in the text, 
+	//  if found, citationsNumber will be incremented, well, or we could just increment the citationsNumber 
+	//  it's not like we have a text in the papers, so why even bother with returning String? 
+	//  for now i will just increment the citationsNumber 
+	  return this.citationsNumber++; 
+	 } 
+	// getters 
+	 public String getTitle() { 
+	  return title; 
+	 } 
+	 
+	 public Date getPublicationDate() { 
+	  return publicationDate; 
+	 } 
+	 
+	 public int getCitationsNumber() { 
+	  return citationsNumber; 
+	 } 
+ 
+  
 }

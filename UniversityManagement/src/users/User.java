@@ -1,6 +1,8 @@
 package users;
 
 import java.io.*;
+
+
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Vector;
@@ -37,18 +39,18 @@ public class User implements Observer, Serializable {
 //        this.userId = userId;
 //    }
 
-    private String getName() {
+    public String getName() {
         return this.name;
     }
  
-    private void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
     public String getPassword() {
         return this.password;
     }
-    private void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
     
@@ -72,12 +74,18 @@ public class User implements Observer, Serializable {
     
   //---------------------------------------- 
     
-    //NeedFix
 	public void viewMessages() {
 		for(Message msg : messages) {
-			System.out.print(msg.getSender().getName() + " send a message to you [ " + msg.getDate() + " ] : \n "
+			System.out.println(msg.getSender().getName() + " sent a message to you [ " + msg.getDate() + " ] : \n "
 					+ msg.getMessageText());
 		}
+	}
+	public void recieveMessage(Message m) {
+		messages.add(m);
+	}
+	
+	public void clearMessages() {
+		messages.clear();
 	}
 	 //NeedFix
 		public void viewNews() {
@@ -95,7 +103,6 @@ public class User implements Observer, Serializable {
 				}
 			}
 		}
-	//NeedFix
 	public void changeLanguage() {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		try {

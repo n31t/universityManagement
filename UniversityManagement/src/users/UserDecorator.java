@@ -1,66 +1,23 @@
-package University Management;
+package users;
 
+public abstract class UserDecorator extends User{
 
-/**
-* @generated
-*/
-public class UserDecorator extends User {
-    
-    /**
-    * @generated
-    */
-    private User decoratedUser;
-    
-    
-    /**
-    * @generated
-    */
-    private User userInterface;
-    
-    
-
-    /**
-    * @generated
-    */
-    protected User getDecoratedUser() {
-        return this.decoratedUser;
-    }
-    
-    /**
-    * @generated
-    */
-    protected User setDecoratedUser(User decoratedUser) {
+	private static final long serialVersionUID = 1L;
+	protected User decoratedUser;
+	public UserDecorator(User decoratedUser) {
         this.decoratedUser = decoratedUser;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public User getUserInterface() {
-        return this.userInterface;
-    }
-    
-    /**
-    * @generated
-    */
-    public User setUserInterface(User userInterface) {
-        this.userInterface = userInterface;
-    }
-    
-    
-    
-
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public User getDecoratedUser() {
-        //TODO
-        return null;
-    }
-    
-    
+	
+	public void showCommands() {
+		decoratedUser.showCommands(); 
+	}
+	public String getName() {
+		 return decoratedUser.getName();
+	}
+	public int getUserId() {
+		 return decoratedUser.getUserId();
+	}
+	public String getPassword() {
+		 return decoratedUser.getPassword();
+	}
 }

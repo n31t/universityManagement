@@ -11,247 +11,380 @@ public class Database implements Serializable{
 
 	private static final long serialVersionUID = 1L;
     private static Database instance = new Database();
-    private Vector users;
-    private Vector employees;
-    private Vector students;
-    private Vector graduateStudents;
-    private Vector admins;
-    private Vector managers;
-    private Vector teachers;
-    private Vector deans;
-    private Vector techSupportSpecialists;
-    private Vector courses;
-    private Vector coursesForRegistration;
-    private Vector news;
-    private Vector organizations;
-    private Vector researchers;
-    private Vector messages;
-    private Vector marks;
-    private Vector complaints;
-    private Vector researchPapers;
-    private Vector researchProjects;
-    private Vector journals;
-    private Vector lessons;
-    private Vector orders;
-    private Vector logs;
-    private Vector deanRequests;
-    private Vector managerRequests;
-
+    private Vector<User> users;
+    private Vector<Employee> employees;
+    private Vector<Student> students;
+    private Vector<GraduateStudent> graduateStudents;
+    private Vector<Admin> admins;
+    private Vector<Manager> managers;
+    private Vector<Teacher> teachers;
+    private Vector<Dean> deans;
+    private Vector<TechSupportSpecialist> techSupportSpecialists;
+    private Vector<Course> courses;
+//    private Vector coursesForRegistration; //Need fix asap NEW CLASS <Student, Course>
+    private Vector<News> news;
+    private Vector<Organization> organizations;
+    private Vector<ResearcherDecorator> researchers;
+    private Vector<Complaint> complaints;
+    private Vector<ResearchPaper> researchPapers;
+    private Vector<ResearchProject> researchProjects;
+    private Vector<Journal> journals;
+    private Vector<Lesson> lessons;
+    private Vector<Order> orders;
+    private Vector<String> logs;
+    private Vector<Request> deanRequests;
+    private Vector<Request> managerRequests;
+    private Database() {
+        users = new Vector<>();
+        employees = new Vector<>();
+        students = new Vector<>();
+        graduateStudents = new Vector<>();
+        admins = new Vector<>();
+        managers = new Vector<>();
+        teachers = new Vector<>();
+        deans = new Vector<>();
+        techSupportSpecialists = new Vector<>();
+        courses = new Vector<>();
+        news = new Vector<>();
+        organizations = new Vector<>();
+        researchers = new Vector<>();
+        complaints = new Vector<>();
+        researchPapers = new Vector<>();
+        researchProjects = new Vector<>();
+        journals = new Vector<>();
+        lessons = new Vector<>();
+        orders = new Vector<>();
+        logs = new Vector<>();
+        deanRequests = new Vector<>();
+        managerRequests = new Vector<>();
+    }
     public static Database getInstance() {
         return instance;
     }
     
-    public Vector getUsers() {
+    public Vector<User> getUsers() {
         return this.users;
     }
 
-    public void setUsers(Vector users) {
+    public void setUsers(Vector<User> users) {
         this.users = users;
     }
     
-    public Vector getEmployees() {
+    public Vector<Employee> getEmployees() {
         return this.employees;
     }
 
-    public void setEmployees(Vector employees) {
+    public void setEmployees(Vector<Employee> employees) {
         this.employees = employees;
     }
 
-    public Vector getStudents() {
+    public Vector<Student> getStudents() {
         return this.students;
     }
 
-    public void setStudents(Vector students) {
+    public void setStudents(Vector<Student> students) {
         this.students = students;
     }
 
-    public Vector getGraduateStudents() {
+    public Vector<GraduateStudent> getGraduateStudents() {
         return this.graduateStudents;
     }
 
-    public void setGraduateStudents(Vector graduateStudents) {
+    public void setGraduateStudents(Vector<GraduateStudent> graduateStudents) {
         this.graduateStudents = graduateStudents;
     }
 
-    public Vector getAdmins() {
+    public Vector<Admin> getAdmins() {
         return this.admins;
     }
 
-    public void setAdmins(Vector admins) {
+    public void setAdmins(Vector<Admin> admins) {
         this.admins = admins;
     }
 
-    public Vector getManagers() {
+    public Vector<Manager> getManagers() {
         return this.managers;
     }
 
-    public void setManagers(Vector managers) {
+    public void setManagers(Vector<Manager> managers) {
         this.managers = managers;
     }
 
-    public Vector getTeachers() {
+    public Vector<Teacher> getTeachers() {
         return this.teachers;
     }
 
-    public void setTeachers(Vector teachers) {
+    public void setTeachers(Vector<Teacher> teachers) {
         this.teachers = teachers;
     }
 
-    public Vector getDeans() {
+    public Vector<Dean> getDeans() {
         return this.deans;
     }
 
-    public void setDeans(Vector deans) {
+    public void setDeans(Vector<Dean> deans) {
         this.deans = deans;
     }
 
-    public Vector getTechSupportSpecialists() {
+    public Vector<TechSupportSpecialist> getTechSupportSpecialists() {
         return this.techSupportSpecialists;
     }
 
-    public void setTechSupportSpecialists(Vector techSupportSpecialists) {
+    public void setTechSupportSpecialists(Vector<TechSupportSpecialist> techSupportSpecialists) {
         this.techSupportSpecialists = techSupportSpecialists;
     }
 
-    public Vector getCourses() {
+    public Vector<Course> getCourses() {
         return this.courses;
     }
-    public void setCourses(Vector courses) {
+    public void setCourses(Vector<Course> courses) {
         this.courses = courses;
     }
 
-    public Vector getCoursesForRegistration() {
-        return this.coursesForRegistration;
-    }
+//    public Vector getCoursesForRegistration() {
+//        return this.coursesForRegistration;
+//    }
+//
+//    public void setCoursesForRegistration(Vector coursesForRegistration) {
+//        this.coursesForRegistration = coursesForRegistration;
+//    }
 
-    public void setCoursesForRegistration(Vector coursesForRegistration) {
-        this.coursesForRegistration = coursesForRegistration;
-    }
-
-    public Vector getNews() {
+    public Vector<News> getNews() {
         return this.news;
     }
 
-    public void setNews(Vector news) {
+    public void setNews(Vector<News> news) {
         this.news = news;
     }
 
-    public Vector getOrganizations() {
+    public Vector<Organization> getOrganizations() {
         return this.organizations;
     }
 
-    public void setOrganizations(Vector organizations) {
+    public void setOrganizations(Vector<Organization> organizations) {
         this.organizations = organizations;
     }
 
-    public Vector getResearchers() {
+    public Vector<ResearcherDecorator> getResearchers() {
         return this.researchers;
     }
 
-    public void setResearchers(Vector researchers) {
+    public void setResearchers(Vector<ResearcherDecorator> researchers) {
         this.researchers = researchers;
     }
 
-    public Vector getMessages() {
-        return this.messages;
-    }
-
-    public void setMessages(Vector messages) {
-        this.messages = messages;
-    }
-
-    public Vector getMarks() {
-        return this.marks;
-    }
-
-    public void setMarks(Vector marks) {
-        this.marks = marks;
-    }
-
-    public Vector getComplaints() {
+    public Vector<Complaint> getComplaints() {
         return this.complaints;
     }
 
-    public void setComplaints(Vector complaints) {
+    public void setComplaints(Vector<Complaint> complaints) {
         this.complaints = complaints;
     }
  
-    public Vector getResearchPapers() {
+    public Vector<ResearchPaper> getResearchPapers() {
         return this.researchPapers;
     }
 
-    public void setResearchPapers(Vector researchPapers) {
+    public void setResearchPapers(Vector<ResearchPaper> researchPapers) {
         this.researchPapers = researchPapers;
     }
     
-    public Vector getResearchProjects() {
+    public Vector<ResearchProject> getResearchProjects() {
         return this.researchProjects;
     }
 
-    public void setResearchProjects(Vector researchProjects) {
+    public void setResearchProjects(Vector<ResearchProject> researchProjects) {
         this.researchProjects = researchProjects;
     }
 
-    public Vector getJournals() {
+    public Vector<Journal> getJournals() {
         return this.journals;
     }
 
-    public void setJournals(Vector journals) {
+    public void setJournals(Vector<Journal> journals) {
         this.journals = journals;
     }
 
-    public Vector getLessons() {
+    public Vector<Lesson> getLessons() {
         return this.lessons;
     }
 
-    public void setLessons(Vector lessons) {
+    public void setLessons(Vector<Lesson> lessons) {
         this.lessons = lessons;
     }
 
-    public Vector getOrders() {
+    public Vector<Order> getOrders() {
         return this.orders;
     }
 
-    public void setOrders(Vector orders) {
+    public void setOrders(Vector<Order> orders) {
         this.orders = orders;
     }
 
-    public Vector getLogs() {
+    public Vector<String> getLogs() {
         return this.logs;
     }
 
-    public void setLogs(Vector logs) {
+    public void setLogs(Vector<String> logs) {
         this.logs = logs;
     }
 
-    public Vector getDeanRequests() {
+    public Vector<Request> getDeanRequests() {
         return this.deanRequests;
     }
 
-    public void setDeanRequests(Vector deanRequests) {
+    public void setDeanRequests(Vector<Request> deanRequests) {
         this.deanRequests = deanRequests;
     }
     
-    public Vector getManagerRequests() {
+    public Vector<Request> getManagerRequests() {
         return this.managerRequests;
     }
 
-    public void setManagerRequests(Vector managerRequests) {
+    public void setManagerRequests(Vector<Request> managerRequests) {
         this.managerRequests = managerRequests;
     }
-       
+    // Add, Delete
+//    public void addUser(User user) {
+//        users.add(user);
+//    }
+//
+//    public void deleteUser(User user) {
+//        users.remove(user);
+//    }
+//    
+//    public void addEmployee(Employee employee) {
+//        employees.add(employee);
+//    }
+//
+//    public void deleteEmployee(Employee employee) {
+//        employees.remove(employee);
+//    }
+//    
+//    public void addStudent(Student student) {
+//        students.add(student);
+//    }
+//
+//    public void deleteStudent(Student student) {
+//        students.remove(student);
+//    }
+//    
+//    public void addGraduateStudent(GraduateStudent graduateStudent) {
+//        graduateStudents.add(graduateStudent);
+//    }
+//
+//    public void deleteGraduateStudent(GraduateStudent graduateStudent) {
+//        graduateStudents.remove(graduateStudent);
+//    }
+//    
+//    // Methods for 'admins' vector
+//    public void addAdmin(Admin admin) {
+//        admins.add(admin);
+//    }
+//
+//    public void deleteAdmin(Admin admin) {
+//        admins.remove(admin);
+//    }
+//
+//    // Methods for 'managers' vector
+//    public void addManager(Manager manager) {
+//        managers.add(manager);
+//    }
+//
+//    public void deleteManager(Manager manager) {
+//        managers.remove(manager);
+//    }
+//
+//    // Methods for 'teachers' vector
+//    public void addTeacher(Teacher teacher) {
+//        teachers.add(teacher);
+//    }
+//
+//    public void deleteTeacher(Teacher teacher) {
+//        teachers.remove(teacher);
+//    }
+//
+//    // Methods for 'deans' vector
+//    public void addDean(Dean dean) {
+//        deans.add(dean);
+//    }
+//
+//    public void deleteDean(Dean dean) {
+//        deans.remove(dean);
+//    }
+//
+//    // Methods for 'techSupportSpecialists' vector
+//    public void addTechSupportSpecialist(TechSupportSpecialist specialist) {
+//        techSupportSpecialists.add(specialist);
+//    }
+//
+//    public void deleteTechSupportSpecialist(TechSupportSpecialist specialist) {
+//        techSupportSpecialists.remove(specialist);
+//    }
+//
+//    // Methods for 'courses' vector
+//    public void addCourse(Course course) {
+//        courses.add(course);
+//    }
+//
+//    public void deleteCourse(Course course) {
+//        courses.remove(course);
+//    }
+//
+//    // Methods for 'news' vector
+//    public void addNews(News newsItem) {
+//        news.add(newsItem);
+//    }
+//
+//    public void deleteNews(News newsItem) {
+//        news.remove(newsItem);
+//    }
+//
+//    // Continue the pattern for other vectors...
+//
+//    // Methods for 'managerRequests' vector
+//    public void addManagerRequest(Request request) {
+//        managerRequests.add(request);
+//    }
+//
+//    public void deleteManagerRequest(Request request) {
+//        managerRequests.remove(request);
+//    }
+//
+//    // Methods for 'deanRequests' vector
+//    public void addDeanRequest(Request request) {
+//        deanRequests.add(request);
+//    }
+//
+//    public void deleteDeanRequest(Request request) {
+//        deanRequests.remove(request);
+//    }
+//    
 
     //                          Operations                                  
 
-    public boolean isAdmin() {
-        //TODO
-        return false;
+    private boolean isAdmin(User user) {
+        return user instanceof Admin;
     }
-    public void addLog() {
-
+    public User getUserById(int userId) {
+        Vector<User> users = Database.getInstance().getUsers();
+        for (User user : users) {
+            if (user.getUserId() == userId) {
+                return user;
+            }
+        }
+        return null;
     }
-    public void printLogs(User u) {
-    	
-    };
-    
+    public void addLog(String logMessage) {
+        logs.add(logMessage);
+    }
+    public void printLogs(User user) {
+        if (isAdmin(user)) {
+            for (String log : logs) {
+                System.out.println(log);
+            }
+        } else {
+            System.out.println("Permission denied. Only admins can print logs.");
+        }
+    }
 }

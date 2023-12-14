@@ -1,148 +1,94 @@
-package University Management;
+package users;
 
+import java.util.Date;
+import java.util.Vector;
 
-/**
-* @generated
-*/
+import researchWorks.*;
+
+import java.util.Vector;
+
 public class ResearcherDecorator extends UserDecorator {
-    
-    /**
-    * @generated
-    */
-    private int hIndex;
-    
-    /**
-    * @generated
-    */
-    private Vector researchPapers;
-    
-    /**
-    * @generated
-    */
-    private Vector researchProjects;
-    
-    
-    /**
-    * @generated
-    */
-    private GraduateStudent graduateStudent;
-    
-    /**
-    * @generated
-    */
-    private ResearchPaper researchPaper;
-    
-    
+    private Vector<ResearchProject> researchProjects;
+    private Vector<ResearchPaper> researchPapers;
+    private int hIndex = 1;
+    private Journal journal;
 
-    /**
-    * @generated
-    */
-    private int getHIndex() {
-        return this.hIndex;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setHIndex(Integer hIndex) {
-        this.hIndex = hIndex;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getResearchPapers() {
-        return this.researchPapers;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector setResearchPapers(Vector researchPapers) {
-        this.researchPapers = researchPapers;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getResearchProjects() {
-        return this.researchProjects;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector setResearchProjects(Vector researchProjects) {
-        this.researchProjects = researchProjects;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public GraduateStudent getGraduateStudent() {
-        return this.graduateStudent;
-    }
-    
-    /**
-    * @generated
-    */
-    public GraduateStudent setGraduateStudent(GraduateStudent graduateStudent) {
-        this.graduateStudent = graduateStudent;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public ResearchPaper getResearchPaper() {
-        return this.researchPaper;
-    }
-    
-    /**
-    * @generated
-    */
-    public ResearchPaper setResearchPaper(ResearchPaper researchPaper) {
-        this.researchPaper = researchPaper;
-    }
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public int getHindex() {
-        //TODO
-        return 0;
+    ResearcherDecorator(User decoratedUser) {
+        super(decoratedUser);
+        researchProjects = new Vector<>();
+        researchPapers = new Vector<>();
+        journal = null;
+    }
+
+    void setResearchProjects(Vector<ResearchProject> projects) {
+        researchProjects = projects;
+    }
+
+    void setResearchPapers(Vector<ResearchPaper> papers) {
+        researchPapers = papers;
+    }
+
+    public Vector<ResearchProject> getResearchProjects() {
+		return researchProjects;
+	}
+
+	public Vector<ResearchPaper> getResearchPapers() {
+		return researchPapers;
+	}    
+	int getHIndex() {
+    	return this.hIndex;
+    }
+
+//	public void setHindex(int hindex) {
+//		this.hindex = hindex;
+//	}
+	
+	public Journal getJournal() {
+		return journal;
+	}
+
+	public void setJournal(Journal journal) {
+		this.journal = journal;
+	}
+
+	// Need Fix
+	public int calculateHIndex() {
+		return 0;
+	}
+
+	void joinResearchProject(ResearchProject project) {
+        researchProjects.add(project);
+    }
+    void printPapers() {
+        for(ResearchPaper r : researchPapers) {
+        	System.out.println(r);        }
     }
     
-    /**
-    * @generated
-    */
-    public void getResearchPapers() {
-        //TODO
+    public void createJournal(String journalName) {
+        if (journal == null) {
+            journal = new Journal();
+            journal.setJournalName(journalName);
+            // Add the researcher (this) as an observer to the journal
+            journal.addObserver(this);
+            System.out.println("Journal created: " + journalName);
+        } else {
+            System.out.println("Error: Researcher already has a journal.");
+        }
     }
-    
-    /**
-    * @generated
-    */
-    public void getResearchProject() {
-        //TODO
+    public void removeJournal() {
+        if (journal != null) {
+            // Remove the researcher (this) as an observer from the journal
+            journal.deleteObserver(this);
+            System.out.println("Journal removed: " + journal.getJournalName());
+            journal = null;
+        } else {
+            System.out.println("Error: Researcher does not have a journal to remove.");
+        }
     }
-    
-    /**
-    * @generated
-    */
-    public int calculateHindex() {
-        //TODO
-        return 0;
+    //Need fix
+    void showResearcherCommands() {
+    	
     }
-    
-    
 }
+

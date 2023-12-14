@@ -1,84 +1,36 @@
-package University Management;
+package users;
 
+import java.util.Vector;
 
-/**
-* @generated
-*/
-public class ResearcherDecoratorBuilder {
-    
-    /**
-    * @generated
-    */
-    private UserDecorator decoratedUser;
-    
-    /**
-    * @generated
-    */
-    private Vector researchPapers;
-    
-    /**
-    * @generated
-    */
-    private Vector researchProjects;
-    
-    
-    
+import researchWorks.*;
 
-    /**
-    * @generated
-    */
-    private UserDecorator getDecoratedUser() {
-        return this.decoratedUser;
-    }
-    
-    /**
-    * @generated
-    */
-    private UserDecorator setDecoratedUser(UserDecorator decoratedUser) {
-        this.decoratedUser = decoratedUser;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getResearchPapers() {
-        return this.researchPapers;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector setResearchPapers(Vector researchPapers) {
-        this.researchPapers = researchPapers;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getResearchProjects() {
-        return this.researchProjects;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector setResearchProjects(Vector researchProjects) {
-        this.researchProjects = researchProjects;
-    }
-    
-    
-    
-    
+import java.util.Vector;
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public ResearcherDecoratorBuilder() {
-        //TODO
+class ResearcherDecoratorBuilder {
+    private User decoratedUser;
+    private Vector<ResearchProject> researchProjects;
+    private Vector<ResearchPaper> researchPapers;
+
+    public ResearcherDecoratorBuilder(User user) {
+        decoratedUser = user;
     }
-    
+
+    public  ResearcherDecoratorBuilder withResearchProjects(Vector<ResearchProject> projects) {
+        researchProjects = projects;
+        return this;
+    }
+
+    public ResearcherDecoratorBuilder withResearchPapers(Vector<ResearchPaper> papers) {
+        researchPapers = papers;
+        return this;
+    }
+
+    public ResearcherDecorator build() {
+        ResearcherDecorator decorator = new ResearcherDecorator(decoratedUser);
+        decorator.setResearchProjects(researchProjects);
+        decorator.setResearchPapers(researchPapers);
+        return decorator;
+    }
 }
+
+

@@ -1,146 +1,57 @@
-package University Management;
+package utility;
 
+import users.Student;
+import users.Teacher;
 
-/**
-* @generated
-*/
 public class Complaint {
-    
-    /**
-    * @generated
-    */
-    private int complaintId;
-    
-    /**
-    * @generated
-    */
-    private UrgencyLevel urgencyLevel;
-    
-    /**
-    * @generated
-    */
-    private Teacher complaintSender;
-    
-    /**
-    * @generated
-    */
-    private Student complaintReciever;
-    
-    /**
-    * @generated
-    */
-    private String complaintText;
-    
-    
-    /**
-    * @generated
-    */
-    private Dean dean;
-    
-    
+	private int complaintId;
+	private static int counterId = 0;
+	private UrgencyLevel urgencyLevel;
+	private Teacher complaintSender;
+	private Student complaintReciever;
+	private String complaintText;
+	{
+		complaintId = counterId++;
+	}
+	public Complaint(UrgencyLevel urgencyLevel,Student complaintReciever,
+			String complaintText) {
+		this.urgencyLevel = urgencyLevel;
+		this.complaintReciever = complaintReciever;
+		this.complaintText = complaintText;
+	}
+	public Complaint() {
 
-    /**
-    * @generated
-    */
-    private int getComplaintId() {
-        return this.complaintId;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setComplaintId(Integer complaintId) {
-        this.complaintId = complaintId;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private UrgencyLevel getUrgencyLevel() {
-        return this.urgencyLevel;
-    }
-    
-    /**
-    * @generated
-    */
-    private UrgencyLevel setUrgencyLevel(UrgencyLevel urgencyLevel) {
-        this.urgencyLevel = urgencyLevel;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Teacher getComplaintSender() {
-        return this.complaintSender;
-    }
-    
-    /**
-    * @generated
-    */
-    private Teacher setComplaintSender(Teacher complaintSender) {
-        this.complaintSender = complaintSender;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Student getComplaintReciever() {
-        return this.complaintReciever;
-    }
-    
-    /**
-    * @generated
-    */
-    private Student setComplaintReciever(Student complaintReciever) {
-        this.complaintReciever = complaintReciever;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getComplaintText() {
-        return this.complaintText;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setComplaintText(String complaintText) {
-        this.complaintText = complaintText;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Dean getDean() {
-        return this.dean;
-    }
-    
-    /**
-    * @generated
-    */
-    public Dean setDean(Dean dean) {
-        this.dean = dean;
-    }
-    
-    
-    
+	}
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public int getComplaintId() {
-        //TODO
-        return 0;
-    }
-    
-    
+	public int getComplaintId() {
+		return this.complaintId;
+	}
+
+	public void setComplaintId(int complaintId) {
+		this.complaintId = complaintId;
+	}
+
+	public Teacher getComplaintSender() {
+		return this.complaintSender;
+	}
+
+	public void setComplaintSender(Teacher complaintSender) {
+		this.complaintSender = complaintSender;
+	}
+
+	public Student getComplaintReciever() {
+		return this.complaintReciever;
+	}
+
+	public void setComplaintReciever(Student complaintReciever) {
+		this.complaintReciever = complaintReciever;
+	}
+
+	public String getComplaintText() {
+		return this.complaintText;
+	}
+
+	public void setComplaintText(String complaintText) {
+		this.complaintText = complaintText;
+	}
 }

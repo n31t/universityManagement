@@ -1,138 +1,67 @@
-package University Management;
+package utility;
 
+import java.util.Date;
 
-/**
-* @generated
-*/
+import users.Employee;
+import users.User;
+
+import java.util.Date;
+
 public class Message {
-    
-    /**
-    * @generated
-    */
-    private int messageId;
-    
-    /**
-    * @generated
-    */
-    private int sender;
-    
-    /**
-    * @generated
-    */
-    private int reviever;
-    
-    /**
-    * @generated
-    */
-    private String messageText;
-    
-    /**
-    * @generated
-    */
-    private Date date;
-    
-    
-    /**
-    * @generated
-    */
-    private User user;
-    
-    
+	private int messageId;
+	private static int counterId = 0;
+	private Employee sender;
+	private User reciever;
+	private String messageText;
+	private Date date;
+	{
+		messageId = counterId++;
+	}
+	public Message() {
+		
+	}
+	public Message(User reciever, String messageText) {
+		this.reciever = reciever;
+		this.messageText = messageText;
+	}
 
-    /**
-    * @generated
-    */
-    private int getMessageId() {
-        return this.messageId;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setMessageId(Integer messageId) {
-        this.messageId = messageId;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private int getSender() {
-        return this.sender;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setSender(Integer sender) {
-        this.sender = sender;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private int getReviever() {
-        return this.reviever;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setReviever(Integer reviever) {
-        this.reviever = reviever;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getMessageText() {
-        return this.messageText;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setMessageText(String messageText) {
-        this.messageText = messageText;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Date getDate() {
-        return this.date;
-    }
-    
-    /**
-    * @generated
-    */
-    private Date setDate(Date date) {
-        this.date = date;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public User getUser() {
-        return this.user;
-    }
-    
-    /**
-    * @generated
-    */
-    public User setUser(User user) {
-        this.user = user;
-    }
-    
-    
-    
+	public int getMessageId() {
+		return this.messageId;
+	}
 
-    //                          Operations                                  
-    
-    
+	public void setMessageId(int messageId) {
+		this.messageId = messageId;
+	}
+
+	public User getReciever() {
+		return this.reciever;
+	}
+
+	public void setReiever(User reciever) {
+		this.reciever = reciever;
+	}
+
+	public Employee getSender() {
+		return this.sender;
+	}
+
+	public void setReiever(Employee sender) {
+		this.sender = sender;
+	}
+
+	public String getMessageText() {
+		return this.messageText;
+	}
+
+	public void setMessageText(String messageText) {
+		this.messageText = messageText;
+	}
+
+	public Date getDate() {
+		return this.date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 }

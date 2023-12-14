@@ -1,138 +1,69 @@
 package researchWorks;
 
+import java.util.NoSuchElementException;
+import java.util.Vector;
 
-/**
-* @generated
-*/
+import users.ResearcherDecorator;
+
 public class ResearchProject implements UseResearchPapers {
-    
-    /**
-    * @generated
-    */
-    private int projectId;
-    
-    /**
-    * @generated
-    */
-    private Vector publishedPapers;
-    
-    /**
-    * @generated
-    */
-    private String topic;
-    
-    /**
-    * @generated
-    */
-    private Vector participants;
-    
-    
-    /**
-    * @generated
-    */
-    private GraduateStudent graduateStudent;
-    
-    /**
-    * @generated
-    */
-    private ResearchPaper researchPaper;
-    
-    
+	private int projectid;
+	private Vector<ResearchPaper> publishedPapers;
+	private String topic;
+	private Vector<ResearcherDecorator> participants;
 
-    /**
-    * @generated
-    */
-    private int getProjectId() {
-        return this.projectId;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setProjectId(Integer projectId) {
-        this.projectId = projectId;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getPublishedPapers() {
-        return this.publishedPapers;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector setPublishedPapers(Vector publishedPapers) {
-        this.publishedPapers = publishedPapers;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getTopic() {
-        return this.topic;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setTopic(String topic) {
-        this.topic = topic;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getParticipants() {
-        return this.participants;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector setParticipants(Vector participants) {
-        this.participants = participants;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public GraduateStudent getGraduateStudent() {
-        return this.graduateStudent;
-    }
-    
-    /**
-    * @generated
-    */
-    public GraduateStudent setGraduateStudent(GraduateStudent graduateStudent) {
-        this.graduateStudent = graduateStudent;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public ResearchPaper getResearchPaper() {
-        return this.researchPaper;
-    }
-    
-    /**
-    * @generated
-    */
-    public ResearchPaper setResearchPaper(ResearchPaper researchPaper) {
-        this.researchPaper = researchPaper;
-    }
-    
-    
-    
+	public ResearchProject(int projectid, Vector<ResearchPaper> publishedPapers, String topic,
+			Vector<ResearcherDecorator> participants) {
+		this.projectid = projectid;
+		this.publishedPapers = publishedPapers;
+		this.topic = topic;
+		this.participants = participants;
+	}
 
-    //                          Operations                                  
-    
-    
+	public int getProjectid() {
+		return projectid;
+	}
+
+	public Vector<ResearchPaper> getPublishedPapers() {
+		return publishedPapers;
+	}
+
+	public String getTopic() {
+		return topic;
+	}
+
+	public Vector<ResearcherDecorator> getParticipants() {
+		return participants;
+	}
+
+	public void addParticipants(ResearcherDecorator r) {
+		this.participants.add(r);
+//  is there a limit for a participants number? 
+		System.out.println(r.getName() + " is now a participant of a project with an id of " + this.getProjectid());
+	}
+
+	public void RemoveParticipants(ResearcherDecorator r) {
+		try {
+			this.participants.remove(r);
+			System.out.println(
+					r.getName() + " is now not a participant of a project with an id of " + this.getProjectid());
+//   i think the researchProject needs a name 
+		} catch (NoSuchElementException ex) {
+			System.out.println("Error: " + ex.getMessage());
+		}
+	}
+
+	public void addPapers(ResearchPaper rp) {
+		this.publishedPapers.add(rp);
+		System.out.println(rp.getTitle() + " is added to a project with an id of " + this.getProjectid());
+	}
+
+	public void removePapers(ResearchPaper rp) { 
+  try { 
+   this.publishedPapers.remove(rp); 
+   System.out.println(rp.getTitle() + " is removed from a project with an id of " + this.getProjectid()); 
+ 
+   }  catch(NoSuchElementException ex) { 
+    System.out.println("Error: " + ex.getMessage()); 
+   } 
+}
 }

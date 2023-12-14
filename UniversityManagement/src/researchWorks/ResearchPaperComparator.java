@@ -1,18 +1,6 @@
-package University Management;
+package researchWorks;
 
+import java.util.Comparator;
 
-/**
-* @generated
-*/
-public class ResearchPaperComparator implements Comparable {
-    
-    
-    
-
-    
-    
-
-    //                          Operations                                  
-    
-    
+public abstract class ResearchPaperComparator implements Comparator<ResearchPaper>{  
 }

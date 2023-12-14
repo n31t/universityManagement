@@ -1,106 +1,73 @@
-package University Management;
+package utility;
 
 
-/**
-* @generated
-*/
 public class News {
-    
-    /**
-    * @generated
-    */
-    private String topic;
-    
-    /**
-    * @generated
-    */
+	private int newsId;
+	private static int newsIdcounter;
+	private String topic;
     private String content;
-    
-    /**
-    * @generated
-    */
-    private boolean isPinned;
-    
-    
-    /**
-    * @generated
-    */
-    private User user;
-    
-    
 
-    /**
-    * @generated
-    */
-    private String getTopic() {
-        return this.topic;
-    }
+    private boolean isPinned;
+    {
+    	newsId = (newsIdcounter++);
+    } 
+	public News() {
+		
+	}
+	
+    public News(int newsId, String topic, String content, boolean isPinned) {
+		this.topic = topic;
+		this.content = content;
+		this.isPinned = isPinned;
+	}
+                              
     
-    /**
-    * @generated
-    */
-    private String setTopic(String topic) {
-        this.topic = topic;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getContent() {
-        return this.content;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setContent(String content) {
-        this.content = content;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private boolean getIsPinned() {
+    public String getTopic() {
+		return topic;
+	}
+
+
+
+	public void setTopic(String topic) {
+		this.topic = topic;
+	}
+
+
+
+	public String getContent() {
+		return content;
+	}
+
+
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+
+
+	public void setPinned(boolean isPinned) {
+		this.isPinned = isPinned;
+	}
+
+
+
+	public boolean isPinned() {
+        //TODO
         return this.isPinned;
     }
-    
-    /**
-    * @generated
-    */
-    private boolean setIsPinned(Boolean isPinned) {
-        this.isPinned = isPinned;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public User getUser() {
-        return this.user;
-    }
-    
-    /**
-    * @generated
-    */
-    public User setUser(User user) {
-        this.user = user;
-    }
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public boolean isPinned() {
-        //TODO
-        return false;
-    }
+
+
+	public int getNewsId() {
+		return newsId;
+	}
+
+
+
+	public void setNewsId(int newsId) {
+		this.newsId = newsId;
+	}
     
     
 }
