@@ -17,10 +17,18 @@ public class Message {
 	{
 		messageId = counterId++;
 	}
+
 	public Message() {
-		
+
 	}
+
 	public Message(User reciever, String messageText) {
+		this.reciever = reciever;
+		this.messageText = messageText;
+	}
+
+	public Message(Employee sender, User reciever, String messageText) {
+		this.sender = sender;
 		this.reciever = reciever;
 		this.messageText = messageText;
 	}

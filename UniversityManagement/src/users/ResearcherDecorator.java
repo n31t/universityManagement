@@ -8,7 +8,8 @@ import researchWorks.*;
 import java.util.Vector;
 
 public class ResearcherDecorator extends UserDecorator {
-    private Vector<ResearchProject> researchProjects;
+    private static final long serialVersionUID = 1L;
+	private Vector<ResearchProject> researchProjects;
     private Vector<ResearchPaper> researchPapers;
     private int hIndex = 1;
     private Journal journal;
@@ -65,7 +66,8 @@ public class ResearcherDecorator extends UserDecorator {
         	System.out.println(r);        }
     }
     
-    public void createJournal(String journalName) {
+    @SuppressWarnings("deprecation")
+	public void createJournal(String journalName) {
         if (journal == null) {
             journal = new Journal();
             journal.setJournalName(journalName);
@@ -76,7 +78,8 @@ public class ResearcherDecorator extends UserDecorator {
             System.out.println("Error: Researcher already has a journal.");
         }
     }
-    public void removeJournal() {
+    @SuppressWarnings("deprecation")
+	public void removeJournal() {
         if (journal != null) {
             // Remove the researcher (this) as an observer from the journal
             journal.deleteObserver(this);

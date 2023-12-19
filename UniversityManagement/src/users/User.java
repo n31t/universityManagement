@@ -12,6 +12,7 @@ import languageManagement.*;
 import utility.*;
 import researchWorks.Journal;
 
+@SuppressWarnings("deprecation")
 public class User implements Observer, Serializable {
 	private static final long serialVersionUID = 1L;
 	private static int count = 0;
@@ -68,15 +69,21 @@ public class User implements Observer, Serializable {
         journal.addObserver(this);
     }
 
-    public void unsubscribeFromJournal(Journal journal) {
+	public void unsubscribeFromJournal(Journal journal) {
         journal.deleteObserver(this);
+    }
+    public void viewJournals() {
+		for(Journal j : Database.getInstance().getJournals()) {
+			System.out.println(j.getJournalId() + ' ' + j.getJournalName());
+		}
     }
     
   //---------------------------------------- 
     
 	public void viewMessages() {
 		for(Message msg : messages) {
-			System.out.println(msg.getSender().getName() + " sent a message to you [ " + msg.getDate() + " ] : \n "
+			System.out.println("User with id and name: " + msg.getSender().getUserId()+ ' ' + msg.getSender().getName() +
+					" sent a message to you [ " + msg.getDate() + " ] : \n "
 					+ msg.getMessageText());
 		}
 	}
@@ -89,17 +96,16 @@ public class User implements Observer, Serializable {
 	}
 	 //NeedFix
 		public void viewNews() {
-			Vector<News> news = Database.getInstance().getNews();
-			for(News n : news) {
+			for(News n : Database.getInstance().getNews()) {
 				if(n.isPinned()) {
 					System.out.println(n.getTopic());
-					System.out.println(n.getContent());
+					System.out.println(n.getContent() + "\n");
 				}
 			}
-			for(News n : news) {
+			for(News n : Database.getInstance().getNews()) {
 				if(!n.isPinned()) {
 					System.out.println(n.getTopic());
-					System.out.println(n.getContent());
+					System.out.println(n.getContent() + "\n");
 				}
 			}
 		}

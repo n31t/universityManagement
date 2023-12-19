@@ -12,8 +12,7 @@ public class LoggingSystem {
     private static boolean isLogged = false;
 
     public static User searchUserByName(int userId, String password) {
-        Vector<User> users = Database.getInstance().getUsers();
-        for (User user : users) {
+        for (User user : Database.getInstance().getUsers()) {
             if (user.getUserId() == userId && user.getPassword().equals(password)) {
                 return user;
             }

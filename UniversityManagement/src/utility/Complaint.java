@@ -5,6 +5,7 @@ import users.Teacher;
 
 public class Complaint {
 	private int complaintId;
+
 	private static int counterId = 0;
 	private UrgencyLevel urgencyLevel;
 	private Teacher complaintSender;
@@ -22,7 +23,14 @@ public class Complaint {
 	public Complaint() {
 
 	}
-
+	
+	public UrgencyLevel getUrgencyLevel() {
+		return urgencyLevel;
+	}
+	public void setUrgencyLevel(UrgencyLevel urgencyLevel) {
+		this.urgencyLevel = urgencyLevel;
+	}
+	
 	public int getComplaintId() {
 		return this.complaintId;
 	}

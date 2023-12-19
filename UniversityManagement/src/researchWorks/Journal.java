@@ -36,12 +36,14 @@ public class Journal extends Observable implements UseResearchPapers {
 	}
     
 
-    public void addPapers(ResearchPaper paper) {
+    @SuppressWarnings("deprecation")
+	public void addPapers(ResearchPaper paper) {
         publishedPapers.add(paper);
         setChanged();
         notifyObservers("Journal : "+ this.getJournalName() + " new research paper added: " + paper.getTitle());
     }
     
+	@SuppressWarnings("deprecation")
 	public void removePapers(ResearchPaper rp) { 
 		  try { 
 		   this.publishedPapers.remove(rp); 

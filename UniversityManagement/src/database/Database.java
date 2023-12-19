@@ -387,4 +387,20 @@ public class Database implements Serializable{
             System.out.println("Permission denied. Only admins can print logs.");
         }
     }
+    public Journal findJournalById(int journalId) {
+        for (Journal journal : Database.getInstance().getJournals()) {
+            if (journal.getJournalId() == journalId) {
+                return journal;
+            }
+        }
+        return null;
+    } 
+    public Request findRequestById(int requestId) {
+        for (Request r : Database.getInstance().getDeanRequests()) {
+            if (r.getRequestId() == requestId) {
+                return r;
+            }
+        }
+        return null;
+    }
 }

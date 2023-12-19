@@ -1,98 +1,61 @@
-package University Management;
+package utility;
 
 
-/**
-* @generated
-*/
+import java.util.Vector;
+
+import users.Student;
 public class Organization {
-    
-    /**
-    * @generated
-    */
-    private int organizationId;
-    
-    /**
-    * @generated
-    */
-    private OrganizationName name;
-    
-    /**
-    * @generated
-    */
-    private Student head;
-    
-    /**
-    * @generated
-    */
-    private Vector Memebrs;
-    
-    
-    
-
-    /**
-    * @generated
-    */
-    private int getOrganizationId() {
-        return this.organizationId;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setOrganizationId(Integer organizationId) {
-        this.organizationId = organizationId;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private OrganizationName getName() {
-        return this.name;
-    }
-    
-    /**
-    * @generated
-    */
-    private OrganizationName setName(OrganizationName name) {
-        this.name = name;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Student getHead() {
+	private int organizationId;
+	private static int counterId;
+	private OrganizationName name; //Need fix, is it a good idea? maybe string
+	private Student head;
+	private int numberOfMembers;
+	{
+		organizationId = counterId++;
+	}
+	
+	public Organization(OrganizationName name, Student head) {
+		super();
+		this.name = name;
+		this.head = head;
+		numberOfMembers = 1;
+	}
+	public int getOrganizationId() {
+		return this.organizationId;
+	}
+	public void setOrganizationId(int organizationId) {
+		this.organizationId=organizationId;
+	}
+	
+	public OrganizationName getName() {
+		return this.name;
+	}
+	public void setname(OrganizationName name) {
+		this.name=name;
+	}
+	
+	public Student getHead() {
         return this.head;
     }
     
-    /**
-    * @generated
-    */
-    private Student setHead(Student head) {
+    public void setHead(Student head) {
         this.head = head;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getMemebrs() {
-        return this.Memebrs;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector setMemebrs(Vector Memebrs) {
-        this.Memebrs = Memebrs;
-    }
-    
-    
-    
-    
+	public Vector<Student> getMembers() {
+	    return this.members;
+	}
 
-    //                          Operations                                  
-    
-    
+	public void setMembers(Vector<Student> members) {
+	    this.members = members;
+	}
+
+	public void addMembers(Student student) {
+	    this.members.add(student);
+	}
+
+	public void removeStudents(Student student) {
+	    this.members.remove(student);
+	}
+	
 }
+
