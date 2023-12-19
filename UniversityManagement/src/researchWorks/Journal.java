@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Observable;
 
+@SuppressWarnings("deprecation")
 public class Journal extends Observable implements UseResearchPapers {
 	private int journalId;
 	private static int idCounter = 0;
@@ -36,14 +37,13 @@ public class Journal extends Observable implements UseResearchPapers {
 	}
     
 
-    @SuppressWarnings("deprecation")
 	public void addPapers(ResearchPaper paper) {
         publishedPapers.add(paper);
         setChanged();
         notifyObservers("Journal : "+ this.getJournalName() + " new research paper added: " + paper.getTitle());
     }
     
-	@SuppressWarnings("deprecation")
+
 	public void removePapers(ResearchPaper rp) { 
 		  try { 
 		   this.publishedPapers.remove(rp); 
@@ -53,4 +53,5 @@ public class Journal extends Observable implements UseResearchPapers {
 		   }  catch(NoSuchElementException ex) { 
 		    System.out.println("Error: " + ex.getMessage()); 
 		   }
+	}
 }
