@@ -15,7 +15,7 @@ public class Dean extends Employee implements InfoRequests {
 	public Dean() {
     	super();
     }
-    
+ 
     public void viewComplaints() {
         for (Complaint complaint : Database.getInstance().getComplaints()) {
             System.out.println("Complaint id: " + complaint.getComplaintId() + "\n" + complaint.getComplaintReciever().getUserId() + 
