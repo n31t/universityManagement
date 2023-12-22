@@ -21,6 +21,9 @@ public class Employee extends User {
     public Employee() {
     	super();
     }
+    public Employee(String name , String password) {
+    	super(name, password);
+    }
     public int getEmployeeId() {
         return this.employeeId;
     }

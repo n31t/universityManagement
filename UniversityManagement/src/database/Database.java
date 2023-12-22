@@ -3,14 +3,25 @@ package database;
 import users.*;
 import utility.*;
 import researchWorks.*;
-import java.io.Serializable;
+
+import java.io.*;
 import java.util.Vector;
 
 
 public class Database implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-    private static Database instance = new Database();
+	public static Database INSTANCE;
+	static {
+		if(new File("data").exists()) {
+			try {
+				INSTANCE = read();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else INSTANCE = new Database();
+	}
     private Vector<User> users;
     private Vector<Employee> employees;
     private Vector<Student> students;
@@ -35,31 +46,31 @@ public class Database implements Serializable{
     private Vector<Request> deanRequests;
     private Vector<Request> managerRequests;
     private Database() {
-        users = new Vector<>();
-        employees = new Vector<>();
-        students = new Vector<>();
-        graduateStudents = new Vector<>();
-        admins = new Vector<>();
-        managers = new Vector<>();
-        teachers = new Vector<>();
-        deans = new Vector<>();
-        techSupportSpecialists = new Vector<>();
-        courses = new Vector<>();
-        news = new Vector<>();
-        organizations = new Vector<>();
-        researchers = new Vector<>();
-        complaints = new Vector<>();
-        researchPapers = new Vector<>();
-        researchProjects = new Vector<>();
-        journals = new Vector<>();
-        lessons = new Vector<>();
-        orders = new Vector<>();
-        logs = new Vector<>();
-        deanRequests = new Vector<>();
-        managerRequests = new Vector<>();
+        users = new Vector<User>();
+        employees = new Vector<Employee>();
+        students = new Vector<Student>();
+        graduateStudents = new Vector<GraduateStudent>();
+        admins = new Vector<Admin>();
+        managers = new Vector<Manager>();
+        teachers = new Vector<Teacher>();
+        deans = new Vector<Dean>();
+        techSupportSpecialists = new Vector<TechSupportSpecialist>();
+        courses = new Vector<Course>();
+        news = new Vector<News>();
+        organizations = new Vector<Organization>();
+        researchers = new Vector<ResearcherDecorator>();
+        complaints = new Vector<Complaint>();
+        researchPapers = new Vector<ResearchPaper>();
+        researchProjects = new Vector<ResearchProject>();
+        journals = new Vector<Journal>();
+        lessons = new Vector<Lesson>();
+        orders = new Vector<Order>();
+        logs = new Vector<String>();
+        deanRequests = new Vector<Request>();
+        managerRequests = new Vector<Request>();
     }
     public static Database getInstance() {
-        return instance;
+        return INSTANCE;
     }
     
     public Vector<User> getUsers() {
@@ -362,7 +373,19 @@ public class Database implements Serializable{
 //    
 
     //                          Operations                                  
-
+    public static Database read() throws IOException, ClassNotFoundException{
+		FileInputStream fis = new FileInputStream("data");
+		ObjectInputStream oin = new ObjectInputStream(fis);
+		return (Database) oin.readObject();
+	}
+	public static void write()throws IOException{
+		FileOutputStream fos = new FileOutputStream("data");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(INSTANCE);
+		oos.close();
+	}
+    
+    
     private boolean isAdmin(User user) {
         return user instanceof Admin;
     }
