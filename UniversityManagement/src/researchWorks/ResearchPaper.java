@@ -6,7 +6,7 @@ import java.util.Vector;
 import users.ResearcherDecorator; 
  
 public class ResearchPaper { 
-	 private int paperid; 
+	 private int paperId; 
 	 private String title; 
 	  
 	 private Vector<ResearcherDecorator> authors; 
@@ -14,10 +14,18 @@ public class ResearchPaper {
 	 private Date publicationDate; 
 	 private int citationsNumber; 
 	 private String doi; 
+	 
+	 private static int count = 0; //Id
 	  
-	 public ResearchPaper(int paperid, String title, Vector<ResearcherDecorator> authors, int numberOfPages, 
+	 {
+		 paperId = (count++);
+		 authors = new Vector<ResearcherDecorator>();
+	 }
+	 public ResearchPaper() {
+		 
+	 }
+	 public ResearchPaper(String title, Vector<ResearcherDecorator> authors, int numberOfPages, 
 	   Date publicationDate, int citationsNumber, String doi) { 
-	  this.paperid = paperid; 
 	  this.title = title; 
 	  this.authors = authors; 
 	  this.NumberOfPages = numberOfPages; 
@@ -25,25 +33,87 @@ public class ResearchPaper {
 	  this.citationsNumber = citationsNumber; 
 	  this.doi = doi; 
 	 } 
-	 public int getCitation(String s) { 
-	//  we could add here the algorithm that would search the given string in the text, 
-	//  if found, citationsNumber will be incremented, well, or we could just increment the citationsNumber 
-	//  it's not like we have a text in the papers, so why even bother with returning String? 
-	//  for now i will just increment the citationsNumber 
-	  return this.citationsNumber++; 
-	 } 
+	 
+	 
 	// getters 
+	 
 	 public String getTitle() { 
 	  return title; 
 	 } 
 	 
-	 public Date getPublicationDate() { 
+	 public int getPaperId() {
+		return paperId;
+	}
+
+
+//	public void setPaperid(int paperid) {
+//		this.paperid = paperid;
+//	}
+
+
+	public Vector<ResearcherDecorator> getAuthors() {
+		return authors;
+	}
+
+
+	public void setAuthors(Vector<ResearcherDecorator> authors) {
+		this.authors = authors;
+	}
+
+
+	public int getNumberOfPages() {
+		return NumberOfPages;
+	}
+
+
+	public void setNumberOfPages(int numberOfPages) {
+		NumberOfPages = numberOfPages;
+	}
+
+
+	public String getDoi() {
+		return doi;
+	}
+
+
+	public void setDoi(String doi) {
+		this.doi = doi;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public void setPublicationDate(Date publicationDate) {
+		this.publicationDate = publicationDate;
+	}
+
+
+	public void setCitationsNumber(int citationsNumber) {
+		this.citationsNumber = citationsNumber;
+	}
+
+
+	public Date getPublicationDate() { 
 	  return publicationDate; 
 	 } 
 	 
 	 public int getCitationsNumber() { 
 	  return citationsNumber; 
 	 } 
- 
+	 public int getCitation(Format f) { 
+		 switch (f) {
+         case PLAIN_TEXT:
+             return this.citationsNumber++;
+         case BIBTEX:
+             // Add logic for BIBTEX citation format if needed
+             return this.citationsNumber++;
+         default:
+             // Handle other formats if necessary
+             return this.citationsNumber++;
+     }
+	 } 
   
 }

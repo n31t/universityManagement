@@ -6,21 +6,32 @@ import java.util.Vector;
 import users.ResearcherDecorator;
 
 public class ResearchProject implements UseResearchPapers {
-	private int projectid;
+	private int projectId;
 	private Vector<ResearchPaper> publishedPapers;
 	private String topic;
 	private Vector<ResearcherDecorator> participants;
 
-	public ResearchProject(int projectid, Vector<ResearchPaper> publishedPapers, String topic,
+	 private static int count = 0; //Id
+	  
+	 {
+		 projectId = (count++);
+		 publishedPapers = new Vector<ResearchPaper>();
+		 participants = new Vector<ResearcherDecorator>();
+	 }
+	
+	 public ResearchProject() {
+		 
+	 }
+	
+	public ResearchProject(Vector<ResearchPaper> publishedPapers, String topic,
 			Vector<ResearcherDecorator> participants) {
-		this.projectid = projectid;
 		this.publishedPapers = publishedPapers;
 		this.topic = topic;
 		this.participants = participants;
 	}
 
-	public int getProjectid() {
-		return projectid;
+	public int getProjectId() {
+		return projectId;
 	}
 
 	public Vector<ResearchPaper> getPublishedPapers() {
@@ -33,6 +44,19 @@ public class ResearchProject implements UseResearchPapers {
 
 	public Vector<ResearcherDecorator> getParticipants() {
 		return participants;
+	}
+	
+
+	public void setPublishedPapers(Vector<ResearchPaper> publishedPapers) {
+		this.publishedPapers = publishedPapers;
+	}
+
+	public void setTopic(String topic) {
+		this.topic = topic;
+	}
+
+	public void setParticipants(Vector<ResearcherDecorator> participants) {
+		this.participants = participants;
 	}
 
 	public void addParticipants(ResearcherDecorator r) {

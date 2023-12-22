@@ -1,201 +1,80 @@
 package users;
 
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Vector;
 
-/**
-* @generated
-*/
+import utility.Lesson;
+import utility.Course;
+import utility.Mark;
+import utility.Organization;
+	
 public class Student extends User implements InfoTeachers, CanViewCourses {
-    
-    /**
-    * @generated
-    */
-    private Vector<Courses> coursesEnrolled;
-    
-    /**
-    * @generated
-    */
-    private Vector<Courses> passedCourses;
-    
-    /**
-    * @generated
-    */
-    private Vector credits;
-    
-    /**
-    * @generated
-    */
-    private Vector organizations;
-    
-    /**
-    * @generated
-    */
-    private int studyYear;
-    
-    /**
-    * @generated
-    */
-    private School school;
-    
-    /**
-    * @generated
-    */
-    private Vector schedule;
-    
-    
-    /**
-    * @generated
-    */
-    private Course course;
-    
-    
+	private static final long serialVersionUID = 1L;
 
-    /**
-    * @generated
-    */
-    private Vector<Courses> getCoursesEnrolled() {
-        return this.coursesEnrolled;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector<Courses> setCoursesEnrolled(Vector<Courses> coursesEnrolled) {
-        this.coursesEnrolled = coursesEnrolled;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector<Courses> getPassedCourses() {
-        return this.passedCourses;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector<Courses> setPassedCourses(Vector<Courses> passedCourses) {
-        this.passedCourses = passedCourses;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getCredits() {
-        return this.credits;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector setCredits(Vector credits) {
-        this.credits = credits;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getOrganizations() {
-        return this.organizations;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector setOrganizations(Vector organizations) {
-        this.organizations = organizations;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private int getStudyYear() {
-        return this.studyYear;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setStudyYear(Integer studyYear) {
-        this.studyYear = studyYear;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private School getSchool() {
-        return this.school;
-    }
-    
-    /**
-    * @generated
-    */
-    private School setSchool(School school) {
-        this.school = school;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getSchedule() {
-        return this.schedule;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector setSchedule(Vector schedule) {
-        this.schedule = schedule;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Course getCourse() {
-        return this.course;
-    }
-    
-    /**
-    * @generated
-    */
-    public Course setCourse(Course course) {
-        this.course = course;
-    }
-    
-    
-    
+	private Vector<Organization> organizations;
+	
+	private int studyYear;
+	
+	private Vector<Course> passedCourses;
+	
+	private Vector<Lesson> schedule;
+	
+	private int credits;
+	
+	private HashMap<Course,Mark> courses;
+	
+		{
+			courses = new HashMap<Course,Mark>();
+			passedCourses = new Vector<Course>();
+			organizations = new Vector<Organization>();
+			schedule = new Vector<Lesson>();
+			
+		}
+		public Student() {
+			
+		}
+		
+		public boolean addCourse(Course c){
+			//check prereq, credits, faculty
+	        courses.put(c, new Mark());
+	        return true;
+		}
+		public String toString(){
+			return name+ ", id is "+id+", registered courses:  "+(courses.size()==0?"No courses yet ":courses);
+		}
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((courses == null) ? 0 : courses.hashCode());
+			result = prime * result + id;
+			result = prime * result + ((name == null) ? 0 : name.hashCode());
+			return result;
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Student other = (Student) obj;
+			return this.id == other.id;
+		}
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public void getCoursesEnrolled() {
-        //TODO
-    }
-    
-    /**
-    * @generated
-    */
-    public double getGpa() {
-        //TODO
-        return 0.0;
-    }
-    
-    /**
-    * @generated
-    */
-    public int getCreditsEarned() {
-        //TODO
-        return 0;
-    }
-    
-    
+		@Override
+		public void viewCourses() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void viewTeachers() {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+
 }

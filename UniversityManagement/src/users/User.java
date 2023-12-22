@@ -77,6 +77,7 @@ public class User implements Observer, Serializable {
     	System.out.println("Journals: ");
 		for(Journal j : Database.getInstance().getJournals()) {
 			System.out.println(j.getJournalId() + ' ' + j.getJournalName());
+			System.out.println("-----------------------");
 		}
     }
     
@@ -88,6 +89,7 @@ public class User implements Observer, Serializable {
 			System.out.println("User with id and name: " + msg.getSender().getUserId()+ ' ' + msg.getSender().getName() +
 					" sent a message to you [ " + msg.getDate() + " ] : \n "
 					+ msg.getMessageText());
+			System.out.println("-----------------------");
 		}
 	}
 	public void recieveMessage(Message m) {

@@ -429,4 +429,12 @@ public class Database implements Serializable{
         }
         return null;
     }
+    public ResearchProject findResearchProjectById(int id) {
+        for (ResearchProject project : researchProjects) {
+            if (project.getProjectId() == id) {
+                return project;
+            }
+        }
+        return null; 
+    }
 }
