@@ -1,9 +1,13 @@
 package utility;
 
+import java.io.Serializable;
+
 import users.Student;
 import users.Teacher;
 
-public class Complaint {
+public class Complaint implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	private int complaintId;
 
 	private static int counterId = 0;

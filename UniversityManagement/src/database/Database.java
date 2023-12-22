@@ -13,7 +13,7 @@ public class Database implements Serializable{
 	private static final long serialVersionUID = 1L;
 	public static Database INSTANCE;
 	static {
-		if(new File("data").exists()) {
+		if(new File("/Users/adilovamir/eclipse-workspace/appli/database.txt").exists()) {
 			try {
 				INSTANCE = read();
 			} catch (Exception e) {
@@ -70,6 +70,9 @@ public class Database implements Serializable{
         managerRequests = new Vector<Request>();
     }
     public static Database getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Database();
+        }
         return INSTANCE;
     }
     
@@ -374,12 +377,12 @@ public class Database implements Serializable{
 
     //                          Operations                                  
     public static Database read() throws IOException, ClassNotFoundException{
-		FileInputStream fis = new FileInputStream("data");
+		FileInputStream fis = new FileInputStream("/Users/adilovamir/eclipse-workspace/appli/database.txt");
 		ObjectInputStream oin = new ObjectInputStream(fis);
 		return (Database) oin.readObject();
 	}
 	public static void write()throws IOException{
-		FileOutputStream fos = new FileOutputStream("data");
+		FileOutputStream fos = new FileOutputStream("/Users/adilovamir/eclipse-workspace/appli/database.txt");
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		oos.writeObject(INSTANCE);
 		oos.close();

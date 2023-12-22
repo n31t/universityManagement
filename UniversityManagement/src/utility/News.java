@@ -1,7 +1,9 @@
 package utility;
 
+import java.io.Serializable;
 
-public class News {
+public class News implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private int newsId;
 	private static int newsIdcounter;
 	private String topic;

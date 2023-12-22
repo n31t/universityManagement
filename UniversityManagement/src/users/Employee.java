@@ -90,6 +90,15 @@ public class Employee extends User {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         while (true) {
+        	//DB
+            try {
+				Database.getInstance().write();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            //DB
+        	
             System.out.println("Employee Commands:");
             
             System.out.println("1. View Journals");

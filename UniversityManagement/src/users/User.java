@@ -23,6 +23,7 @@ public class User implements Observer, Serializable {
     private Vector<Message> messages;
     {
     	userId = (count++);
+    	messages = new Vector<Message>();
     }
     
     public User() {
@@ -73,6 +74,7 @@ public class User implements Observer, Serializable {
         journal.deleteObserver(this);
     }
     public void viewJournals() {
+    	System.out.println("Journals: ");
 		for(Journal j : Database.getInstance().getJournals()) {
 			System.out.println(j.getJournalId() + ' ' + j.getJournalName());
 		}
@@ -81,6 +83,7 @@ public class User implements Observer, Serializable {
   //---------------------------------------- 
     
 	public void viewMessages() {
+		System.out.println("Messages: ");
 		for(Message msg : messages) {
 			System.out.println("User with id and name: " + msg.getSender().getUserId()+ ' ' + msg.getSender().getName() +
 					" sent a message to you [ " + msg.getDate() + " ] : \n "
@@ -93,9 +96,11 @@ public class User implements Observer, Serializable {
 	
 	public void clearMessages() {
 		messages.clear();
+		System.out.println("Messages are cleared");
 	}
 	 //NeedFix
 		public void viewNews() {
+			System.out.println("News: ");
 			for(News n : Database.getInstance().getNews()) {
 				if(n.isPinned()) {
 					System.out.println(n.getTopic());
@@ -113,8 +118,10 @@ public class User implements Observer, Serializable {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		try {
 			String lang_name;
+			System.out.println("Input Language name: ");
             lang_name = reader.readLine();
             Language.getInstance().setLanguageName(lang_name);
+            System.out.println("Successful!");
         } catch (IOException | InvalidLanguageException i) {
             System.out.println("Error reading language name. Please try again.");
         }

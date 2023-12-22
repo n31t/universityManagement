@@ -1,6 +1,7 @@
 package users;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 import database.Database;
@@ -14,6 +15,10 @@ public class Dean extends Employee implements InfoRequests {
 
 	public Dean() {
     	super();
+    }
+	
+	public Dean(String name , String password) {
+    	super(name, password);
     }
  
     public void viewComplaints() {
@@ -34,6 +39,10 @@ public class Dean extends Employee implements InfoRequests {
             Request requestToAccept = Database.getInstance().findRequestById(requestId);
             if (requestToAccept != null) {
                 System.out.println("Request accepted successfully!");
+                //Need fix (enum change to Accepted)
+                Database.getInstance().getManagerRequests().add(requestToAccept);
+                requestToAccept.setRequstStatus(ACCEPTED);
+                Database.getInstance().getDeanRequests().remove(requestToAccept);
             } else {
                 System.out.println("Request with ID " + requestId + " not found.");
             }
@@ -43,11 +52,29 @@ public class Dean extends Employee implements InfoRequests {
     }
   //Need fix
     public void declineRequest() {
-    	
+    	System.out.println("Enter the ID of the request you want to decline:");
+        try {
+        	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            int requestId = Integer.parseInt(reader.readLine());
+            Request requestToAccept = Database.getInstance().findRequestById(requestId);
+            if (requestToAccept != null) {
+                System.out.println("Request declined successfully!");
+                //Need fix (enum change to Accepted)
+                requestToAccept.setRequstStatus(REJECTED);
+            } else {
+                System.out.println("Request with ID " + requestId + " not found.");
+            }
+        } catch (NumberFormatException | IOException e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        }
     }
   //Need fix
     public void viewRequests() {
-    	
+    	for (Request request : Database.getInstance().getDeanRequests()) {
+            System.out.println("Request id: " + request.getRequestId() + "\n" + request.getRequestStatus() + "\n" +
+            		request.getRequestText();
+            		);
+        }
     }
     
     //Need fix

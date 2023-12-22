@@ -21,7 +21,8 @@ public class LoggingSystem {
         return null;
     }
 
-    public static void start() {
+    @SuppressWarnings("static-access")
+	public static void start() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int userId = 0;
         String password;
@@ -59,7 +60,16 @@ public class LoggingSystem {
                 while (isLogged) {
                     System.out.println("Type 1 to logout");
                     System.out.println("Type 2 to show commands");
-
+                    
+                    //DB
+                    try {
+						Database.getInstance().write();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                    //DB
+                    
                     try {
                         int choice = Integer.parseInt(reader.readLine());
 
@@ -72,7 +82,7 @@ public class LoggingSystem {
                             	try {
                                 user.showCommands();
                             	}
-                            	catch(Exception e) {
+                            	catch(Exception n) {
                             		System.out.println("Some error occurred.");
                             	}
                                 break;

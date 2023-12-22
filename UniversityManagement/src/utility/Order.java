@@ -1,7 +1,9 @@
 package utility;
 
+import java.io.Serializable;
 
-public class Order {
+public class Order implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private int orderId;
 	private static int counterId;
 	private String orderText;

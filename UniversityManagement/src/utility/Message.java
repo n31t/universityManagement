@@ -1,19 +1,22 @@
 package utility;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Observer;
 
 import users.Employee;
 import users.User;
 
 import java.util.Date;
 
-public class Message {
+public class Message implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private int messageId;
 	private static int counterId = 0;
 	private Employee sender;
 	private User reciever;
 	private String messageText;
-	private Date date;
+	private Date date = new Date(System.currentTimeMillis());
 	{
 		messageId = counterId++;
 	}

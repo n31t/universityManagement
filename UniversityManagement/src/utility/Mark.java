@@ -1,6 +1,9 @@
 package utility;
 
-public class Mark {
+import java.io.Serializable;
+
+public class Mark implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private int markId;
 	private double firstAttestation;
 	private double secondAttestation;
