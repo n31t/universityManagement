@@ -25,10 +25,10 @@ public class Dean extends Employee implements InfoRequests {
     public void viewComplaints() {
         for (Complaint complaint : Database.getInstance().getComplaints()) {
             System.out.println("Complaint id: " + complaint.getComplaintId() + "\n" + complaint.getComplaintReciever().getUserId() + 
-            		' ' +
-            		complaint.getComplaintReciever().getName() + ' ' + complaint.getUrgencyLevel() + "\n"+
+            		" " +
+            		complaint.getComplaintReciever().getName() + " " + complaint.getUrgencyLevel() + "\n"+
             		complaint.getComplaintText() + "\n"+
-            		"Sender: " + complaint.getComplaintSender().getUserId() + ' ' + complaint.getComplaintSender().getName());
+            		"Sender: " + complaint.getComplaintSender().getUserId() + " " + complaint.getComplaintSender().getName());
         }
     }
     //Need fix
