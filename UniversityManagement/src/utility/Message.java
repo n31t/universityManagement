@@ -2,12 +2,10 @@ package utility;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Observer;
 
 import users.Employee;
 import users.User;
 
-import java.util.Date;
 
 public class Message implements Serializable{
 	private static final long serialVersionUID = 1L;

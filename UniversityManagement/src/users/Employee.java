@@ -86,6 +86,8 @@ public class Employee extends User {
             System.out.println("Invalid input. Please enter a valid string.");
         }
     }
+    
+    
     public void showCommands() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -113,6 +115,7 @@ public class Employee extends User {
             System.out.println("10. Send Message"); //!
             System.out.println("11. Send Request to Dean"); //!
             System.out.println("12. Send Order"); //!
+            System.out.println("13. Researcher menu");
 
             try {
                 int choice = Integer.parseInt(reader.readLine());
@@ -180,6 +183,15 @@ public class Employee extends User {
                         break;
                     case 12:
                     	sendOrder();
+                    	break;
+                    case 13: //Researcher
+                    	ResearcherDecorator Researcher = Database.getInstance().findResearcherById(this.getUserId());
+                    	if(Researcher != null){
+                    		Researcher.showResearcherCommands();
+                    	}
+                    	else {
+                    		System.out.println("User have no permission to do that. Firstly became a Researcher");
+                    	}
                     	break;
                     default:
                         System.out.println("Invalid choice. Please try again.");

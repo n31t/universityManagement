@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import database.Database;
+import enums.Status;
 import utility.Complaint;
 import utility.Message;
 import utility.Request;
@@ -41,7 +42,7 @@ public class Dean extends Employee implements InfoRequests {
                 System.out.println("Request accepted successfully!");
                 //Need fix (enum change to Accepted)
                 Database.getInstance().getManagerRequests().add(requestToAccept);
-                requestToAccept.setRequstStatus(ACCEPTED);
+                requestToAccept.setRequestStatus(Status.ACCEPTED);
                 Database.getInstance().getDeanRequests().remove(requestToAccept);
             } else {
                 System.out.println("Request with ID " + requestId + " not found.");
@@ -60,7 +61,7 @@ public class Dean extends Employee implements InfoRequests {
             if (requestToAccept != null) {
                 System.out.println("Request declined successfully!");
                 //Need fix (enum change to Accepted)
-                requestToAccept.setRequstStatus(REJECTED);
+                requestToAccept.setRequestStatus(Status.REJECTED);
             } else {
                 System.out.println("Request with ID " + requestId + " not found.");
             }
@@ -72,7 +73,7 @@ public class Dean extends Employee implements InfoRequests {
     public void viewRequests() {
     	for (Request request : Database.getInstance().getDeanRequests()) {
             System.out.println("Request id: " + request.getRequestId() + "\n" + request.getRequestStatus() + "\n" +
-            		request.getRequestText();
+            		request.getRequestText()
             		);
         }
     }

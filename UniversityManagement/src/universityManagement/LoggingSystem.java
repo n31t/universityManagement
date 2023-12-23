@@ -57,6 +57,7 @@ public class LoggingSystem {
                 System.out.println("Login successful!");
                 //News shows
                 user.showJournalUpdates();
+                user.viewNews();
                 while (isLogged) {
                     System.out.println("Type 1 to logout");
                     System.out.println("Type 2 to show commands");

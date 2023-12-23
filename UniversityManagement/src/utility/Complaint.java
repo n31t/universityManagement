@@ -2,6 +2,7 @@ package utility;
 
 import java.io.Serializable;
 
+import enums.UrgencyLevel;
 import users.Student;
 import users.Teacher;
 

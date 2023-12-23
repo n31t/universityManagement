@@ -1,17 +1,20 @@
 package researchWorks; 
  
+import java.io.Serializable;
 import java.util.Date; 
 import java.util.Vector;
 
+import enums.Format;
 import users.ResearcherDecorator; 
  
-public class ResearchPaper { 
-	 private int paperId; 
+public class ResearchPaper implements Serializable{ 
+	 private static final long serialVersionUID = 1L;
+	private int paperId; 
 	 private String title; 
 	  
 	 private Vector<ResearcherDecorator> authors; 
 	 private int NumberOfPages; 
-	 private Date publicationDate; 
+	 private Date publicationDate = new Date(System.currentTimeMillis());; 
 	 private int citationsNumber; 
 	 private String doi; 
 	 
@@ -24,12 +27,10 @@ public class ResearchPaper {
 	 public ResearchPaper() {
 		 
 	 }
-	 public ResearchPaper(String title, Vector<ResearcherDecorator> authors, int numberOfPages, 
-	   Date publicationDate, int citationsNumber, String doi) { 
+	 public ResearchPaper(String title, Vector<ResearcherDecorator> authors, int numberOfPages, int citationsNumber, String doi) { 
 	  this.title = title; 
 	  this.authors = authors; 
 	  this.NumberOfPages = numberOfPages; 
-	  this.publicationDate = publicationDate; 
 	  this.citationsNumber = citationsNumber; 
 	  this.doi = doi; 
 	 } 
@@ -103,16 +104,16 @@ public class ResearchPaper {
 	 public int getCitationsNumber() { 
 	  return citationsNumber; 
 	 } 
-	 public int getCitation(Format f) { 
+	 //Need fix
+	 public String getCitation(Format f) { 
+		 citationsNumber++;
 		 switch (f) {
          case PLAIN_TEXT:
-             return this.citationsNumber++;
+             return "S: fff A: ddd";
          case BIBTEX:
-             // Add logic for BIBTEX citation format if needed
-             return this.citationsNumber++;
+             return "A: mffmskfdmdsf";
          default:
-             // Handle other formats if necessary
-             return this.citationsNumber++;
+             return "No such format";
      }
 	 } 
   

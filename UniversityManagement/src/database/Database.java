@@ -437,4 +437,22 @@ public class Database implements Serializable{
         }
         return null; 
     }
+    
+    public ResearcherDecorator findResearcherById(int id) {
+        for (ResearcherDecorator res : researchers) {
+            if (res.getUserId() == id) {
+                return res;
+            }
+        }
+        return null; 
+    }
+    
+    public Journal findJournalByAuthorId(int id) {
+        for (Journal journal : journals) {
+            if (journal.getAuthor().getUserId() == id) {
+                return journal;
+            }
+        }
+        return null;
+    }
 }

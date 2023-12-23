@@ -1,118 +1,44 @@
-package University Management;
+package utility;
 
+import java.io.Serializable;
 
-/**
-* @generated
-*/
-public class Request {
-    
-    /**
-    * @generated
-    */
-    private int requestId;
-    
-    /**
-    * @generated
-    */
-    private String requestText;
-    
-    /**
-    * @generated
-    */
-    private Status requestStatus;
-    
-    
-    /**
-    * @generated
-    */
-    private Manager manager;
-    
-    /**
-    * @generated
-    */
-    private Dean dean;
-    
-    
+import enums.Status;
 
-    /**
-    * @generated
-    */
-    private int getRequestId() {
-        return this.requestId;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setRequestId(Integer requestId) {
-        this.requestId = requestId;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getRequestText() {
-        return this.requestText;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setRequestText(String requestText) {
-        this.requestText = requestText;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Status getRequestStatus() {
-        return this.requestStatus;
-    }
-    
-    /**
-    * @generated
-    */
-    private Status setRequestStatus(Status requestStatus) {
-        this.requestStatus = requestStatus;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Dean getDean() {
-        return this.dean;
-    }
-    
-    /**
-    * @generated
-    */
-    public Dean setDean(Dean dean) {
-        this.dean = dean;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Manager getManager() {
-        return this.manager;
-    }
-    
-    /**
-    * @generated
-    */
-    public Manager setManager(Manager manager) {
-        this.manager = manager;
-    }
-    
-    
-    
+public class Request implements Serializable{
+	private static final long serialVersionUID = 1L;
+	private int requestId;
+	private String requestText;
+	private Status requestStatus;
+	
+	private static int count = 0;
+	{
+		requestId = (count++);
+	}
+	public Request(){
+		this.requestStatus = Status.UNKNOWN;
+	}
+	public Request(String requstText) {
+		this.requestText = requstText;
+		this.requestStatus = Status.UNKNOWN;
+	}
+	public int getRequestId() {
+		return requestId;
+	}
+	public void setRequestId(int requestId) {
+		this.requestId = requestId;
+	}
+	public String getRequestText() {
+		return requestText;
+	}
+	public void setRequestText(String requstText) {
+		this.requestText = requstText;
+	}
+	public Status getRequestStatus() {
+		return requestStatus;
+	}
+	public void setRequestStatus(Status requestStatus) {
+		this.requestStatus = requestStatus;
+	}
+		
 
-    //                          Operations                                  
-    
-    
 }

@@ -1,11 +1,13 @@
 package researchWorks;
 
+import java.io.Serializable;
 import java.util.NoSuchElementException;
 import java.util.Vector;
 
 import users.ResearcherDecorator;
 
-public class ResearchProject implements UseResearchPapers {
+public class ResearchProject implements UseResearchPapers, Serializable {
+	private static final long serialVersionUID = 1L;
 	private int projectId;
 	private Vector<ResearchPaper> publishedPapers;
 	private String topic;
@@ -62,14 +64,14 @@ public class ResearchProject implements UseResearchPapers {
 	public void addParticipants(ResearcherDecorator r) {
 		this.participants.add(r);
 //  is there a limit for a participants number? 
-		System.out.println(r.getName() + " is now a participant of a project with an id of " + this.getProjectid());
+		System.out.println(r.getName() + " is now a participant of a project with an id of " + this.getProjectId());
 	}
 
 	public void RemoveParticipants(ResearcherDecorator r) {
 		try {
 			this.participants.remove(r);
 			System.out.println(
-					r.getName() + " is now not a participant of a project with an id of " + this.getProjectid());
+					r.getName() + " is now not a participant of a project with an id of " + this.getProjectId());
 //   i think the researchProject needs a name 
 		} catch (NoSuchElementException ex) {
 			System.out.println("Error: " + ex.getMessage());
@@ -78,13 +80,13 @@ public class ResearchProject implements UseResearchPapers {
 
 	public void addPapers(ResearchPaper rp) {
 		this.publishedPapers.add(rp);
-		System.out.println(rp.getTitle() + " is added to a project with an id of " + this.getProjectid());
+		System.out.println(rp.getTitle() + " is added to a project with an id of " + this.getProjectId());
 	}
 
 	public void removePapers(ResearchPaper rp) { 
   try { 
    this.publishedPapers.remove(rp); 
-   System.out.println(rp.getTitle() + " is removed from a project with an id of " + this.getProjectid()); 
+   System.out.println(rp.getTitle() + " is removed from a project with an id of " + this.getProjectId()); 
  
    }  catch(NoSuchElementException ex) { 
     System.out.println("Error: " + ex.getMessage()); 

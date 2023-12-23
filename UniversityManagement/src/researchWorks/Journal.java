@@ -1,23 +1,42 @@
 package researchWorks;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Observable;
 
+import users.ResearcherDecorator;
+
 @SuppressWarnings("deprecation")
-public class Journal extends Observable implements UseResearchPapers {
+public class Journal extends Observable implements UseResearchPapers, Serializable {
+	private static final long serialVersionUID = 1L;
 	private int journalId;
 	private static int idCounter = 0;
     private List<ResearchPaper> publishedPapers;
     private String journalName;
+    private ResearcherDecorator author;
     {
     	journalId = (idCounter++);
+    	this.publishedPapers = new ArrayList<>();
     }
     public Journal() {
-        this.publishedPapers = new ArrayList<>();
     }
-    public int getJournalId() {
+    public Journal( ResearcherDecorator author) {
+    	this.author = author;
+    }
+    public Journal(String journalName, ResearcherDecorator author) {
+        this.journalName = journalName;
+        this.author = author;
+    }
+    
+    public ResearcherDecorator getAuthor() {
+		return author;
+	}
+	public void setAuthor(ResearcherDecorator author) {
+		this.author = author;
+	}
+	public int getJournalId() {
 		return journalId;
 	}
 //	public void setJournalId(int journalId) {
