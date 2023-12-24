@@ -13,7 +13,6 @@ public class ResearcherDecorator extends UserDecorator {
     private static final long serialVersionUID = 1L;
     private Vector<ResearchPaper> researchPapers;
     private int hIndex = 0;
-    private Journal journal;
 
 
     ResearcherDecorator(User decoratedUser) {
@@ -24,7 +23,6 @@ public class ResearcherDecorator extends UserDecorator {
             throw new IllegalArgumentException("This user cannot be a researcher");
         }
         researchPapers = new Vector<>();
-        journal = null;
     }
 
 
@@ -44,13 +42,6 @@ public class ResearcherDecorator extends UserDecorator {
 //		this.hindex = hindex;
 //	}
 	
-	public Journal getJournal() {
-		return journal;
-	}
-
-	public void setJournal(Journal journal) {
-		this.journal = journal;
-	}
 
 	// Need Fix
 	public int calculateHIndex() {
@@ -82,7 +73,7 @@ public class ResearcherDecorator extends UserDecorator {
     @SuppressWarnings("deprecation")
 	public void createJournal(String journalName) {
     	if (Database.getInstance().findJournalByAuthorId(this.getUserId()) == null) {
-            journal = new Journal(this);
+            Journal journal = new Journal(this);
             journal.setJournalName(journalName);
             journal.addObserver(this);
             Database.getInstance().getJournals().add(journal);
@@ -140,7 +131,7 @@ public class ResearcherDecorator extends UserDecorator {
             ResearchPaper paperToAdd = findResearchPaperById(paperIdToAdd);
 
             if (paperToAdd != null) {
-                Journal journal = getJournal();
+                Journal journal = Database.getInstance().findJournalByAuthorId(this.getUserId());
                 if (journal != null) {
                     journal.addPapers(paperToAdd);
                     System.out.println("Paper added to journal successfully!");
@@ -162,7 +153,7 @@ public class ResearcherDecorator extends UserDecorator {
             ResearchPaper paperToRemove = findResearchPaperById(paperIdToRemove);
 
             if (paperToRemove != null) {
-                Journal journal = getJournal();
+                Journal journal = Database.getInstance().findJournalByAuthorId(this.getUserId());
                 if (journal != null) {
                     journal.removePapers(paperToRemove);
                     System.out.println("Paper removed from journal successfully!");
