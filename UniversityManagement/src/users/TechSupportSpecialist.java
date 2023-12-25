@@ -2,6 +2,7 @@ package users;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.Vector;
 
 import database.Database;
@@ -54,10 +55,9 @@ public class TechSupportSpecialist extends Employee{
             System.out.println("10. Send Message"); //!
             System.out.println("11. Send Request to Dean"); //!
             System.out.println("12. Send Order"); //!
-            System.out.println("13. Researcher menu");
-            System.out.println("14. See the order");
-            System.out.println("15. Accept order");
-            System.out.println("16. Reject the order");
+            System.out.println("13. See the order");
+            System.out.println("14. Accept order");
+            System.out.println("15. Reject the order");
             try {
                 int choice = Integer.parseInt(reader.readLine());
 
@@ -125,35 +125,31 @@ public class TechSupportSpecialist extends Employee{
                     case 12:
                     	sendOrder();
                     	break;
-                    case 13: //Researcher
-                    	ResearcherDecorator Researcher = Database.getInstance().findResearcherById(this.getUserId());
-                    	if(Researcher != null){
-                    		Researcher.showResearcherCommands();
-                    	}
-                    	else {
-                    		System.out.println("User have no permission to do that. Firstly became a Researcher");
-                    	}
-                    	break;
                     
-                    case 14:
+                    case 13:
                     	this.viewOrders();
             	        break;
             
-            	    case 15:       
+            	    case 14:       
             	    	try {
             	    		System.out.println("Enter the id of the order you want to accept");
             	    		int idAccept = Integer.parseInt(reader.readLine());
-            	    		Database.getInstance().getOrders().stream().forEach(order -> order.setOrderText(Status.ACCEPTED));
+            	    		Database.getInstance().getOrders().stream().
+							filter(order -> order.getOrderId() == idAccept).findFirst().
+							ifPresent(order -> order.setOrderStatus(Status.ACCEPTED));
             	        }catch (NumberFormatException | IOException e) {
                             System.out.println("Invalid input. Please enter a valid integer.");
                         }
           	        break;
 
-            	    case 16:
+            	    case 15:
             	    	try {
             	    		System.out.println("Enter the id of the order you want to reject");
             	    		int idReject = Integer.parseInt(reader.readLine());
-            	    		Database.getInstance().getOrders().stream().forEach(order -> order.setOrderText(Status.REJECTED));
+            	    		Database.getInstance().getOrders().stream()
+            	    								.filter(order -> order.getOrderId() == idReject).findFirst()
+            	    								.ifPresent(order -> order.setOrderStatus(Status.REJECTED));
+            	    		
             	        }catch (NumberFormatException | IOException e) {
                             System.out.println("Invalid input. Please enter a valid integer.");
                         }
