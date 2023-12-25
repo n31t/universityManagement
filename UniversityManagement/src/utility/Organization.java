@@ -9,14 +9,17 @@ public class Organization implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int organizationId;
 	private static int counterId;
-	private OrganizationName name; //Need fix, is it a good idea? maybe string
+	private String name; 
 	private Student head;
-	private int numberOfMembers;
+	private int numberOfMembers; //Need fix
 	{
 		organizationId = counterId++;
 	}
 	
-	public Organization(OrganizationName name, Student head) {
+	public Organization() {
+		super();
+	}
+	public Organization(String name, Student head) {
 		super();
 		this.name = name;
 		this.head = head;
@@ -25,14 +28,14 @@ public class Organization implements Serializable{
 	public int getOrganizationId() {
 		return this.organizationId;
 	}
-	public void setOrganizationId(int organizationId) {
-		this.organizationId=organizationId;
-	}
+//	public void setOrganizationId(int organizationId) {
+//		this.organizationId=organizationId;
+//	}
 	
-	public OrganizationName getName() {
+	public String getName() {
 		return this.name;
 	}
-	public void setname(OrganizationName name) {
+	public void setname(String name) {
 		this.name=name;
 	}
 	
@@ -43,21 +46,6 @@ public class Organization implements Serializable{
     public void setHead(Student head) {
         this.head = head;
     }
-	public Vector<Student> getMembers() {
-	    return this.members;
-	}
-
-	public void setMembers(Vector<Student> members) {
-	    this.members = members;
-	}
-
-	public void addMembers(Student student) {
-	    this.members.add(student);
-	}
-
-	public void removeStudents(Student student) {
-	    this.members.remove(student);
-	}
 	
 }
 

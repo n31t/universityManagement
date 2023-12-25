@@ -35,7 +35,7 @@ public class Order implements Serializable{
 	public Status getStatus() {
 		return this.orderStatus;
 	}
-	public void setOrderText(Status orderStatus ) {
+	public void setOrderStatus(Status orderStatus ) {
 		this.orderStatus=orderStatus;
 	}
 }

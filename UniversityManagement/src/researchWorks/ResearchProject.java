@@ -62,8 +62,7 @@ public class ResearchProject implements UseResearchPapers, Serializable {
 	}
 
 	public void addParticipants(ResearcherDecorator r) {
-		this.participants.add(r);
-//  is there a limit for a participants number? 
+		this.participants.add(r); 
 		System.out.println(r.getName() + " is now a participant of a project with an id of " + this.getProjectId());
 	}
 
@@ -72,7 +71,6 @@ public class ResearchProject implements UseResearchPapers, Serializable {
 			this.participants.remove(r);
 			System.out.println(
 					r.getName() + " is now not a participant of a project with an id of " + this.getProjectId());
-//   i think the researchProject needs a name 
 		} catch (NoSuchElementException ex) {
 			System.out.println("Error: " + ex.getMessage());
 		}

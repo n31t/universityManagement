@@ -18,7 +18,7 @@ public class ResearcherDecorator extends UserDecorator {
 
     ResearcherDecorator(User decoratedUser) {
         super(decoratedUser);
-        //Kostil that checks is it a viable class to be Researcher
+
         if (decoratedUser.getClass() != Student.class && decoratedUser.getClass() != GraduateStudent.class
                 && decoratedUser.getClass() != Employee.class && decoratedUser.getClass() != Teacher.class) {
             throw new IllegalArgumentException("This user cannot be a researcher");
@@ -244,6 +244,34 @@ public class ResearcherDecorator extends UserDecorator {
         }
     }
     
+    void createResearchPaper() {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+            System.out.println("Enter the title of the research paper:");
+            String title = reader.readLine();
+
+            System.out.println("Enter the number of pages:");
+            int numberOfPages = Integer.parseInt(reader.readLine());
+
+            System.out.println("Enter the DOI:");
+            String doi = reader.readLine();
+
+            System.out.println("Enter the number of authors:");
+            int numAuthors = Integer.parseInt(reader.readLine());
+            Vector<ResearcherDecorator> authors = new Vector<ResearcherDecorator>();
+            authors.add(this);
+
+            ResearchPaper paper = new ResearchPaper(title, authors, numberOfPages, 0, doi);
+            researchPapers.add(paper);
+
+            System.out.println("Research paper created successfully!");
+        } catch (NumberFormatException | IOException e) {
+            System.out.println("Invalid input. Please enter valid values.");
+        }
+    }
+
+    
     private void viewCitation() {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -305,6 +333,7 @@ public class ResearcherDecorator extends UserDecorator {
             System.out.println("12. Add Paper to Project");
             System.out.println("13. Remove Paper from Project");
             System.out.println("14. View Citations");
+            System.out.println("15. Create Research Paper");
 
             try {
                 int choice = Integer.parseInt(reader.readLine());
@@ -384,6 +413,9 @@ public class ResearcherDecorator extends UserDecorator {
                         break;
                     case 14:
                         viewCitation();
+                        break;
+                    case 15:
+                        createResearchPaper();
                         break;
                     default:
                         System.out.println("Invalid choice. Please try again.");

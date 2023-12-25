@@ -1,118 +1,75 @@
 package users;
 
+import database.Database;
+import enums.DegreesType;
+import enums.School;
+import researchWorks.ResearchProject;
+import universityManagement.InvalidStudyYearException;
+import universityManagement.InvalidSupervisorException;
 
-/**
-* @generated
-*/
 public class GraduateStudent extends Student {
     
-    /**
-    * @generated
-    */
-    private DegreesType degreeType;
-    
-    /**
-    * @generated
-    */
+    private static final long serialVersionUID = 1L;
+
+	private DegreesType degreeType;
+
     private ResearcherDecorator researchSupervisor;
-    
-    /**
-    * @generated
-    */
+
     private ResearchProject diplomaProject;
     
-    
-    /**
-    * @generated
-    */
-    private ResearcherDecorator researcherDecorator;
-    
-    /**
-    * @generated
-    */
-    private ResearchProject researchProject;
-    
-    
-
-    /**
-    * @generated
-    */
-    private DegreesType getDegreeType() {
-        return this.degreeType;
+    {
+    	researchSupervisor = null;
+    	diplomaProject = null;    	
     }
-    
-    /**
-    * @generated
-    */
-    private DegreesType setDegreeType(DegreesType degreeType) {
-        this.degreeType = degreeType;
+    public GraduateStudent() {
+    	
     }
-    
-    
-    /**
-    * @generated
-    */
-    private ResearcherDecorator getResearchSupervisor() {
-        return this.researchSupervisor;
+    public GraduateStudent(String name , String password, int studyYear, School school,ResearcherDecorator researchSupervisor) throws InvalidStudyYearException, InvalidSupervisorException {
+    	super(name , password, studyYear, school);
+    	this.researchSupervisor = researchSupervisor;
+    	if(researchSupervisor.calculateHIndex()<3) {
+    		throw new InvalidSupervisorException();
+    	}
+    	ResearcherDecorator rd = new ResearcherDecorator(this);
+    	Database.getInstance().getResearchers().add(rd);
     }
-    
-    /**
-    * @generated
-    */
-    private ResearcherDecorator setResearchSupervisor(ResearcherDecorator researchSupervisor) {
-        this.researchSupervisor = researchSupervisor;
+    public GraduateStudent(String name , String password, int studyYear, School school,
+    		ResearcherDecorator researchSupervisor, ResearchProject diplomaProject) throws InvalidStudyYearException, InvalidSupervisorException {
+    	super(name , password, studyYear, school);
+    	this.researchSupervisor = researchSupervisor;
+    	if(researchSupervisor.calculateHIndex()<3) {
+    		throw new InvalidSupervisorException();
+    	}
+    	this.diplomaProject = diplomaProject;
+    	ResearcherDecorator rd = new ResearcherDecorator(this);
+    	Database.getInstance().getResearchers().add(rd);
     }
-    
-    
-    /**
-    * @generated
-    */
-    private ResearchProject getDiplomaProject() {
-        return this.diplomaProject;
-    }
-    
-    /**
-    * @generated
-    */
-    private ResearchProject setDiplomaProject(ResearchProject diplomaProject) {
-        this.diplomaProject = diplomaProject;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public ResearcherDecorator getResearcherDecorator() {
-        return this.researcherDecorator;
-    }
-    
-    /**
-    * @generated
-    */
-    public ResearcherDecorator setResearcherDecorator(ResearcherDecorator researcherDecorator) {
-        this.researcherDecorator = researcherDecorator;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public ResearchProject getResearchProject() {
-        return this.researchProject;
-    }
-    
-    /**
-    * @generated
-    */
-    public ResearchProject setResearchProject(ResearchProject researchProject) {
-        this.researchProject = researchProject;
-    }
+	public DegreesType getDegreeType() {
+		return degreeType;
+	}
+	public void setDegreeType(DegreesType degreeType) {
+		this.degreeType = degreeType;
+	}
+	public ResearcherDecorator getResearchSupervisor() {
+		return researchSupervisor;
+	}
+	public void setResearchSupervisor(ResearcherDecorator researchSupervisor) {
+		this.researchSupervisor = researchSupervisor;
+	}
+	public ResearchProject getDiplomaProject() {
+		return diplomaProject;
+	}
+	public void setDiplomaProject(ResearchProject diplomaProject) {
+		this.diplomaProject = diplomaProject;
+	}
+	
     
     
     
-
-    //                          Operations                                  
+    
+   
+    
+              
     
     
 }

@@ -42,7 +42,7 @@ public class Teacher extends Employee implements CanViewCourses, GiveMarks, Info
     /**
     * @generated
     */
-    private TeacherType getTeacherType() {
+    TeacherType getTeacherType() {
         return this.teacherType;
     }
     

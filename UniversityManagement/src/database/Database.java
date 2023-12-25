@@ -32,7 +32,7 @@ public class Database implements Serializable{
     private Vector<Dean> deans;
     private Vector<TechSupportSpecialist> techSupportSpecialists;
     private Vector<Course> courses;
-//    private Vector coursesForRegistration; //Need fix asap NEW CLASS <Student, Course>
+    private Vector <CourseForRegistration>coursesForRegistration; 
     private Vector<News> news;
     private Vector<Organization> organizations;
     private Vector<ResearcherDecorator> researchers;
@@ -155,13 +155,13 @@ public class Database implements Serializable{
         this.courses = courses;
     }
 
-//    public Vector getCoursesForRegistration() {
-//        return this.coursesForRegistration;
-//    }
-//
-//    public void setCoursesForRegistration(Vector coursesForRegistration) {
-//        this.coursesForRegistration = coursesForRegistration;
-//    }
+    public Vector<CourseForRegistration> getCoursesForRegistration() {
+        return this.coursesForRegistration;
+    }
+
+    public void setCoursesForRegistration(Vector<CourseForRegistration> coursesForRegistration) {
+        this.coursesForRegistration = coursesForRegistration;
+    }
 
     public Vector<News> getNews() {
         return this.news;
@@ -460,6 +460,30 @@ public class Database implements Serializable{
     	for (Student student : students) {
             if (student.getUserId() == id) {
                 return student;
+            }
+        }
+        return null;
+    }
+    public Course findCourseById(int id) {
+    	for (Course course : courses) {
+            if (course.getCourseId() == id) {
+                return course;
+            }
+        }
+        return null;
+    }
+    public Organization findOrganizationById(int id) {
+    	for (Organization org : organizations) {
+            if (org.getOrganizationId() == id) {
+                return org;
+            }
+        }
+        return null;
+    }
+    public Teacher findTeacherById(int id) {
+    	for (Teacher teach : teachers) {
+            if (teach.getUserId() == id) {
+                return teach;
             }
         }
         return null;

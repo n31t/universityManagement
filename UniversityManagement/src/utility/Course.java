@@ -1,298 +1,141 @@
-package University Management;
+package utility;
 
+import java.util.Vector;
 
-/**
-* @generated
-*/
-public class Course {
-    
-    /**
-    * @generated
-    */
-    private int courseId;
-    
-    /**
-    * @generated
-    */
-    private String courseName;
-    
-    /**
-    * @generated
-    */
-    private Vector studentsEnrolled;
-    
-    /**
-    * @generated
-    */
-    private Vector instructors;
-    
-    /**
-    * @generated
-    */
-    private Vector prereq;
-    
-    /**
-    * @generated
-    */
-    private ElectiveType elective;
-    
-    /**
-    * @generated
-    */
-    private Vector schools;
-    
-    /**
-    * @generated
-    */
-    private int costInCredits;
-    
-    /**
-    * @generated
-    */
-    private Map<Student.id, Mark>> marks;
-    
-    /**
-    * @generated
-    */
-    private Vector lessons;
-    
-    
-    /**
-    * @generated
-    */
-    private Teacher teacher;
-    
-    /**
-    * @generated
-    */
-    private Lesson lesson;
-    
-    /**
-    * @generated
-    */
-    private Student student;
-    
-    /**
-    * @generated
-    */
-    private Mark mark;
-    
-    
+import enums.ElectiveType;
+import enums.School;
+import users.Student;
+import users.Teacher;
 
-    /**
-    * @generated
-    */
-    private int getCourseId() {
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+public class Course implements Serializable{
+	private static final long serialVersionUID = 1L;
+	private int courseId;
+	private String courseName;
+	private Vector<Teacher> instructors;
+	private Vector<Course> prereq;
+	private ElectiveType elective;
+	private Vector<School> schools;
+	private int costInCredits;
+	private Map <Student,Mark> marks;
+	private Vector<Lesson> lessons;
+	
+	private static int count = 0;
+	{
+		courseId = (count++);
+		lessons = new Vector<Lesson>();
+		instructors = new Vector<Teacher>();
+		prereq = new Vector<Course>();
+		marks = new HashMap<Student, Mark>();
+	}
+	public Course() {
+		
+	}
+	
+    public Course(String courseName, ElectiveType elective, Vector<School> schools, int costInCredits,
+			Vector<Lesson> lessons) {
+		super();
+		this.courseName = courseName;
+		this.elective = elective;
+		this.schools = schools;
+		this.costInCredits = costInCredits;
+		this.lessons = lessons;
+	}
+
+	public int getCourseId() {
         return this.courseId;
     }
     
-    /**
-    * @generated
-    */
-    private int setCourseId(Integer courseId) {
+    public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
     
-    
-    /**
-    * @generated
-    */
-    private String getCourseName() {
+    public String getCourseName() {
         return this.courseName;
     }
     
-    /**
-    * @generated
-    */
-    private String setCourseName(String courseName) {
+    public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
     
-    
-    /**
-    * @generated
-    */
-    private Vector getStudentsEnrolled() {
-        return this.studentsEnrolled;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector setStudentsEnrolled(Vector studentsEnrolled) {
-        this.studentsEnrolled = studentsEnrolled;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getInstructors() {
+    public Vector<Teacher> getInstructors() {
         return this.instructors;
     }
     
-    /**
-    * @generated
-    */
-    private Vector setInstructors(Vector instructors) {
+    public void setInstructors(Vector<Teacher> instructors) {
         this.instructors = instructors;
     }
     
-    
-    /**
-    * @generated
-    */
-    private Vector getPrereq() {
-        return this.prereq;
+    public void addInstructors(Teacher teacher) {
+        this.instructors.add(teacher);
+    }
+
+    public void removeInstructor(Teacher teacher) {
+        this.instructors.remove(teacher);
     }
     
-    /**
-    * @generated
-    */
-    private Vector setPrereq(Vector prereq) {
+    public Vector<Course> getPrereq() {
+        return this.prereq;
+    }
+
+    public void setPrereq(Vector<Course> prereq) {
         this.prereq = prereq;
     }
     
-    
-    /**
-    * @generated
-    */
-    private ElectiveType getElective() {
-        return this.elective;
+    public void addPrereq(Course prereq) {
+        this.prereq.add(prereq);
+    }
+
+    public void removePrereq(Course prereq) {
+        this.prereq.remove(prereq);
     }
     
-    /**
-    * @generated
-    */
-    private ElectiveType setElective(ElectiveType elective) {
+    public ElectiveType getElective() {
+        return this.elective;
+    }
+   
+    public void setElective(ElectiveType elective) {
         this.elective = elective;
     }
     
-    
-    /**
-    * @generated
-    */
-    private Vector getSchools() {
+    public Vector<School> getSchools() {
         return this.schools;
     }
     
-    /**
-    * @generated
-    */
-    private Vector setSchools(Vector schools) {
+    public void setSchools(Vector<School> schools) {
         this.schools = schools;
     }
     
-    
-    /**
-    * @generated
-    */
-    private int getCostInCredits() {
+    public int getCostInCredits() {
         return this.costInCredits;
     }
     
-    /**
-    * @generated
-    */
-    private int setCostInCredits(Integer costInCredits) {
+    public void setCostInCredits(int costInCredits) {
         this.costInCredits = costInCredits;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Map<Student.id, Mark>> getMarks() {
+
+    public Map<Student, Mark> getMarks() {
         return this.marks;
     }
     
-    /**
-    * @generated
-    */
-    private Map<Student.id, Mark>> setMarks(Map<Student.id, Mark>> marks) {
+   
+     public void setMarks(Map<Student, Mark> marks) {
         this.marks = marks;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getLessons() {
+ 
+    public  Vector<Lesson> getLessons() {
         return this.lessons;
     }
     
-    /**
-    * @generated
-    */
-    private Vector setLessons(Vector lessons) {
+    public void setLessons(Vector<Lesson> lessons) {
         this.lessons = lessons;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Mark getMark() {
-        return this.mark;
+    public void addLesson(Lesson lesson) {
+        this.lessons.add(lesson);
     }
-    
-    /**
-    * @generated
-    */
-    public Mark setMark(Mark mark) {
-        this.mark = mark;
+    public Mark getMark(Student student) {
+        return this.marks.get(student);
     }
-    
-    
-    /**
-    * @generated
-    */
-    public Teacher getTeacher() {
-        return this.teacher;
-    }
-    
-    /**
-    * @generated
-    */
-    public Teacher setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Lesson getLesson() {
-        return this.lesson;
-    }
-    
-    /**
-    * @generated
-    */
-    public Lesson setLesson(Lesson lesson) {
-        this.lesson = lesson;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Student getStudent() {
-        return this.student;
-    }
-    
-    /**
-    * @generated
-    */
-    public Student setStudent(Student student) {
-        this.student = student;
-    }
-    
-    
-    
-
-    //                          Operations                                  
-    
-    
 }

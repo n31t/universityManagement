@@ -41,7 +41,6 @@ public class Dean extends Employee implements InfoRequests {
             Request requestToAccept = Database.getInstance().findRequestById(requestId);
             if (requestToAccept != null) {
                 System.out.println("Request accepted successfully!");
-                //Need fix (enum change to Accepted)
                 Database.getInstance().getManagerRequests().add(requestToAccept);
                 requestToAccept.setRequestStatus(Status.ACCEPTED);
                 Database.getInstance().getDeanRequests().remove(requestToAccept);
@@ -52,7 +51,7 @@ public class Dean extends Employee implements InfoRequests {
             System.out.println("Invalid input. Please enter a valid integer.");
         }
     }
-  //Need fix
+
     public void declineRequest() {
     	System.out.println("Enter the ID of the request you want to decline:");
         try {
@@ -61,7 +60,6 @@ public class Dean extends Employee implements InfoRequests {
             Request requestToAccept = Database.getInstance().findRequestById(requestId);
             if (requestToAccept != null) {
                 System.out.println("Request declined successfully!");
-                //Need fix (enum change to Accepted)
                 requestToAccept.setRequestStatus(Status.REJECTED);
             } else {
                 System.out.println("Request with ID " + requestId + " not found.");
@@ -85,7 +83,7 @@ public class Dean extends Employee implements InfoRequests {
     	//admin deletes this student
         Message kickMessage = new Message(this, Database.getInstance().getAdmins().get(0), 
         		"Dean wants to kick student with ID: " + s.getUserId() + " because he got too much complaints");
-        Database.getInstance().getAdmins().get(0).recieveMessage(kickMessage);;    
+        Database.getInstance().getAdmins().get(0).recieveMessage(kickMessage);   
         }
     
     public void showCommands() {

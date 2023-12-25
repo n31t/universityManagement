@@ -2,6 +2,8 @@ package languageManagement;
 
 import java.io.Serializable;
 
+import universityManagement.InvalidLanguageException;
+
 public enum Language implements Serializable{
     DEFAULT("English"), EN("English"), RU("Russian"), KZ("Kazakh");
 
