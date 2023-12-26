@@ -548,6 +548,13 @@ public class Admin extends Employee {
             System.out.println("Something went wrong.");
         }
     }
+    
+    public void viewUsers() {
+        System.out.println("Viewing Users:");
+        Database.getInstance().getUsers().stream()
+                .forEach(user -> System.out.println("ID: " + user.getUserId() +
+                        ", Name: " + user.getName()));
+    }
     public void showCommands() {
     	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -579,6 +586,7 @@ public class Admin extends Employee {
             System.out.println("14. Remove User");
             System.out.println("15. Create course");
             System.out.println("16. View logs");
+            System.out.println("17. View users");
 
             try {
                 int choice = Integer.parseInt(reader.readLine());
@@ -658,6 +666,9 @@ public class Admin extends Employee {
                     	break;
                     case 16:
                     	this.viewLogFiles();
+                    	break;
+                    case 17:
+                    	this.viewUsers();
                     	break;
                     default:
                         System.out.println("Invalid choice. Please try again.");

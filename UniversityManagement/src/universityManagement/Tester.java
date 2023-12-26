@@ -62,8 +62,9 @@ public class Tester {
 
         Database.getInstance().getStudents().add(student1);
         
+        Student student = new Student("Amanzhol", "aaa", 1); 
 
-
+        Database.getInstance().getUsers().add(student);
 		LoggingSystem.start();
 	}
 }
