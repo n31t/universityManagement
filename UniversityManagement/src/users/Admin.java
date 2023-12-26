@@ -162,6 +162,9 @@ public class Admin extends Employee {
         } catch (NumberFormatException | IOException | InvalidSupervisorException | InvalidStudyYearException e) {
             System.out.println("Invalid input. Unable to add graduate student.");
         }
+        catch (Exception e) {
+            System.out.println("Something went wrong.");
+        }
     }
   
     public void addTeacher() {
@@ -234,6 +237,9 @@ public class Admin extends Employee {
             System.out.println("Manager added successfully!");
         } catch (NumberFormatException | IOException e) {
             System.out.println("Invalid input. Unable to add manager.");
+        }
+        catch (Exception e) {
+            System.out.println("Something went wrong.");
         }
     }
     public void addAdmin() {
@@ -518,11 +524,12 @@ public class Admin extends Employee {
             int costInCredits = Integer.parseInt(reader.readLine());
 
             Course newCourse = new Course(courseName, electiveType, schools, costInCredits, new Vector<>());
-
-
-            System.out.println("Enter the IDs of the prerequisite courses for the course (separated by commas):");
-            String[] prereqIds = reader.readLine().split(",");
-            for (String prereqId : prereqIds) {
+            System.out.println("Does this course have prerequisite courses? (yes or no)");
+            String yesOrNo= reader.readLine();
+            if(yesOrNo.equals("yes")) {
+            	 System.out.println("Enter the IDs of the prerequisite courses for the course (separated by commas):");
+            	 String[] prereqIds = reader.readLine().split(",");
+            	 for (String prereqId : prereqIds) {
                 Course prereqCourse = Database.getInstance().findCourseById(Integer.parseInt(prereqId));
                 if (prereqCourse != null) {
                     newCourse.addPrereq(prereqCourse);
@@ -530,11 +537,15 @@ public class Admin extends Employee {
                     System.out.println("Prerequisite course with ID " + prereqId + " not found.");
                 }
             }
+            }
             Database.getInstance().getCourses().add(newCourse);
 
             System.out.println("Course created successfully!");
         } catch (NumberFormatException | IOException e) {
             System.out.println("Invalid input. Unable to create the course.");
+        }
+        catch (Exception e) {
+            System.out.println("Something went wrong.");
         }
     }
     public void showCommands() {
