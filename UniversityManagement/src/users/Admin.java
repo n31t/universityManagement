@@ -29,7 +29,7 @@ public class Admin extends Employee {
     	super(name, password);
     }
 	public void viewLogFiles(){
-		
+		Database.getInstance().printLogs(this);
 	}
 	public void addUser() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -567,6 +567,7 @@ public class Admin extends Employee {
             System.out.println("13. Add User");
             System.out.println("14. Remove User");
             System.out.println("15. Create course");
+            System.out.println("16. View logs");
 
             try {
                 int choice = Integer.parseInt(reader.readLine());
@@ -641,6 +642,8 @@ public class Admin extends Employee {
                     case 14:
                     	removeUser();
                     	break;
+                    case 15:
+                    	viewLogFiles();
                     default:
                         System.out.println("Invalid choice. Please try again.");
                 }

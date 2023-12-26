@@ -55,6 +55,7 @@ public class LoggingSystem {
             if (user != null) {
                 isLogged = true;
                 System.out.println("Login successful!");
+                Database.getInstance().addLog("User with id: " + user.getUserId() + " logged in");
                 //News shows
                 user.showJournalUpdates();
                 user.viewNews();

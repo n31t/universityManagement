@@ -17,7 +17,7 @@ public class ResearcherDecorator extends UserDecorator {
     private int hIndex = 0;
 
 
-    ResearcherDecorator(User decoratedUser) {
+    public ResearcherDecorator(User decoratedUser) {
         super(decoratedUser);
 
         if (decoratedUser.getClass() != Student.class && decoratedUser.getClass() != GraduateStudent.class
@@ -47,7 +47,6 @@ public class ResearcherDecorator extends UserDecorator {
 
 	// Need Fix
 	public int calculateHIndex() {
-        // Implementation of H-index calculation
         hIndex = 0;
         int paperCount = researchPapers.size();
         researchPapers.sort(new ComparatorByCitation().reversed());

@@ -325,7 +325,8 @@ public class Teacher extends Employee implements CanViewCourses, GiveMarks, Info
                     	    }
                     	    break;
                     case 16: 
-                    	this.putMarks(); 
+                    	putMarks(); 
+                    	break;
                     case 17:
                     	ResearcherDecorator Researcher = Database.getInstance().findResearcherById(this.getUserId());
                     	if(Researcher != null){
