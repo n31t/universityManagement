@@ -8,11 +8,14 @@ import researchWorks.*;
 import java.io.*;
 import java.util.Vector;
 
-
+/**
+ * The Database class manages the data for the application and provides methods to access and manipulate the data.
+ */
 public class Database implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	public static Database INSTANCE;
+	// Static block to initialize the INSTANCE variable based on file existence
 	static {
 		if(new File("/Users/adilovamir/eclipse-workspace/appli/database.txt").exists()) {
 			try {
@@ -23,6 +26,7 @@ public class Database implements Serializable{
 		}
 		else INSTANCE = new Database();
 	}
+	// Definition of various vectors to store different types of data
     private Vector<User> users;
     private Vector<Employee> employees;
     private Vector<Student> students;
@@ -46,6 +50,12 @@ public class Database implements Serializable{
     private Vector<String> logs;
     private Vector<Request> deanRequests;
     private Vector<Request> managerRequests;
+    
+    // ... (similar definitions for other vectors)
+
+    /**
+     * Private constructor to initialize the vectors when an instance of the Database class is created.
+     */
     private Database() {
         users = new Vector<User>();
         employees = new Vector<Employee>();
@@ -71,6 +81,12 @@ public class Database implements Serializable{
         deanRequests = new Vector<Request>();
         managerRequests = new Vector<Request>();
     }
+    
+    /**
+     * Method to get the instance of the Database class (following the Singleton pattern).
+     *
+     * @return The Database instance.
+     */
     public static Database getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Database();
@@ -260,140 +276,49 @@ public class Database implements Serializable{
     public void setManagerRequests(Vector<Request> managerRequests) {
         this.managerRequests = managerRequests;
     }
-    // Add, Delete
-//    public void addUser(User user) {
-//        users.add(user);
-//    }
-//
-//    public void deleteUser(User user) {
-//        users.remove(user);
-//    }
-//    
-//    public void addEmployee(Employee employee) {
-//        employees.add(employee);
-//    }
-//
-//    public void deleteEmployee(Employee employee) {
-//        employees.remove(employee);
-//    }
-//    
-//    public void addStudent(Student student) {
-//        students.add(student);
-//    }
-//
-//    public void deleteStudent(Student student) {
-//        students.remove(student);
-//    }
-//    
-//    public void addGraduateStudent(GraduateStudent graduateStudent) {
-//        graduateStudents.add(graduateStudent);
-//    }
-//
-//    public void deleteGraduateStudent(GraduateStudent graduateStudent) {
-//        graduateStudents.remove(graduateStudent);
-//    }
-//    
-//    // Methods for 'admins' vector
-//    public void addAdmin(Admin admin) {
-//        admins.add(admin);
-//    }
-//
-//    public void deleteAdmin(Admin admin) {
-//        admins.remove(admin);
-//    }
-//
-//    // Methods for 'managers' vector
-//    public void addManager(Manager manager) {
-//        managers.add(manager);
-//    }
-//
-//    public void deleteManager(Manager manager) {
-//        managers.remove(manager);
-//    }
-//
-//    // Methods for 'teachers' vector
-//    public void addTeacher(Teacher teacher) {
-//        teachers.add(teacher);
-//    }
-//
-//    public void deleteTeacher(Teacher teacher) {
-//        teachers.remove(teacher);
-//    }
-//
-//    // Methods for 'deans' vector
-//    public void addDean(Dean dean) {
-//        deans.add(dean);
-//    }
-//
-//    public void deleteDean(Dean dean) {
-//        deans.remove(dean);
-//    }
-//
-//    // Methods for 'techSupportSpecialists' vector
-//    public void addTechSupportSpecialist(TechSupportSpecialist specialist) {
-//        techSupportSpecialists.add(specialist);
-//    }
-//
-//    public void deleteTechSupportSpecialist(TechSupportSpecialist specialist) {
-//        techSupportSpecialists.remove(specialist);
-//    }
-//
-//    // Methods for 'courses' vector
-//    public void addCourse(Course course) {
-//        courses.add(course);
-//    }
-//
-//    public void deleteCourse(Course course) {
-//        courses.remove(course);
-//    }
-//
-//    // Methods for 'news' vector
-//    public void addNews(News newsItem) {
-//        news.add(newsItem);
-//    }
-//
-//    public void deleteNews(News newsItem) {
-//        news.remove(newsItem);
-//    }
-//
-//    // Continue the pattern for other vectors...
-//
-//    // Methods for 'managerRequests' vector
-//    public void addManagerRequest(Request request) {
-//        managerRequests.add(request);
-//    }
-//
-//    public void deleteManagerRequest(Request request) {
-//        managerRequests.remove(request);
-//    }
-//
-//    // Methods for 'deanRequests' vector
-//    public void addDeanRequest(Request request) {
-//        deanRequests.add(request);
-//    }
-//
-//    public void deleteDeanRequest(Request request) {
-//        deanRequests.remove(request);
-//    }
-//    
+    
+    // Getter and setter methods for various vectors...
 
-    //                          Operations                                  
+    /**
+     * Reads the serialized data from a file and returns a Database instance.
+     *
+     * @return The Database instance read from the file.
+     * @throws IOException            If an I/O error occurs.
+     * @throws ClassNotFoundException If the class of a serialized object cannot be found.
+     */                               
     public static Database read() throws IOException, ClassNotFoundException{
 		FileInputStream fis = new FileInputStream("/Users/adilovamir/eclipse-workspace/appli/database.txt");
 		ObjectInputStream oin = new ObjectInputStream(fis);
 		return (Database) oin.readObject();
 	}
+    
+    /**
+     * Writes the current Database instance to a file for persistence.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
 	public static void write()throws IOException{
 		FileOutputStream fos = new FileOutputStream("/Users/adilovamir/eclipse-workspace/appli/database.txt");
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		oos.writeObject(INSTANCE);
 		oos.close();
 	}
-    
+	 /**
+     * Checks if a given user is an admin.
+     *
+     * @param user The user to check.
+     * @return True if the user is an admin, false otherwise.
+     */
     
     private boolean isAdmin(User user) {
         return user instanceof Admin;
     }
+    /**
+     * Retrieves a user based on the provided user ID.
+     *
+     * @param userId The ID of the user to retrieve.
+     * @return The user with the specified ID, or null if not found.
+     */
     public User getUserById(int userId) {
         Vector<User> users = Database.getInstance().getUsers();
         for (User user : users) {
@@ -403,9 +328,20 @@ public class Database implements Serializable{
         }
         return null;
     }
+    /**
+     * Adds a log message to the logs vector.
+     *
+     * @param logMessage The log message to add.
+     */
     public void addLog(String logMessage) {
         logs.add(logMessage);
     }
+    
+    /**
+     * Prints logs if the user is an admin.
+     *
+     * @param user The user attempting to print logs.
+     */
     public void printLogs(User user) {
         if (isAdmin(user)) {
             for (String log : logs) {
@@ -415,6 +351,13 @@ public class Database implements Serializable{
             System.out.println("Permission denied. Only admins can print logs.");
         }
     }
+    
+    /**
+     * Finds a journal based on the provided journal ID.
+     *
+     * @param journalId The ID of the journal to find.
+     * @return The journal with the specified ID, or null if not found.
+     */
     public Journal findJournalById(int journalId) {
         return Database.getInstance().getJournals()
                 .stream()
@@ -422,6 +365,12 @@ public class Database implements Serializable{
                 .findFirst()
                 .orElse(null);
     }
+    /**
+     * Finds a request based on the provided journal ID.
+     *
+     * @param requestId The ID of the request to find.
+     * @return The request with the specified ID, or null if not found.
+     */
 
     public Request findRequestById(int requestId) {
         return Database.getInstance().getDeanRequests()
@@ -430,81 +379,155 @@ public class Database implements Serializable{
                 .findFirst()
                 .orElse(null);
     }
-
+    /**
+     * Finds a research project based on the provided project ID.
+     *
+     * @param id The ID of the research project to find.
+     * @return The research project with the specified ID, or null if not found.
+     */
     public ResearchProject findResearchProjectById(int id) {
         return researchProjects.stream()
                 .filter(project -> project.getProjectId() == id)
                 .findFirst()
                 .orElse(null);
     }
-
+    /**
+     * Finds a researcher based on the provided researcher ID.
+     *
+     * @param id The ID of the researcher to find.
+     * @return The researcher with the specified ID, or null if not found.
+     */
     public ResearcherDecorator findResearcherById(int id) {
         return researchers.stream()
                 .filter(res -> res.getUserId() == id)
                 .findFirst()
                 .orElse(null);
     }
-
+    /**
+     * Finds a journal based on the provided journal ID.
+     *
+     * @param journalId The ID of the journal to find.
+     * @return The journal with the specified ID, or null if not found.
+     */
     public Journal findJournalByAuthorId(int id) {
         return journals.stream()
                 .filter(journal -> journal.getAuthor().getUserId() == id)
                 .findFirst()
                 .orElse(null);
     }
+ // ... (similar comments for other find methods)
 
+    /**
+     * Finds a student based on the provided user ID.
+     *
+     * @param id The ID of the student to find.
+     * @return The student with the specified ID, or null if not found.
+     */
     public Student findStudentById(int id) {
         return students.stream()
                 .filter(student -> student.getUserId() == id)
                 .findFirst()
                 .orElse(null);
     }
-
+    
+    /**
+     * Finds a course based on the provided course ID.
+     *
+     * @param id The ID of the course to find.
+     * @return The course with the specified ID, or null if not found.
+     */
     public Course findCourseById(int id) {
         return courses.stream()
                 .filter(course -> course.getCourseId() == id)
                 .findFirst()
                 .orElse(null);
     }
-
+    
+    /**
+     * Finds an organization based on the provided organization ID.
+     *
+     * @param id The ID of the organization to find.
+     * @return The organization with the specified ID, or null if not found.
+     */
     public Organization findOrganizationById(int id) {
         return organizations.stream()
                 .filter(org -> org.getOrganizationId() == id)
                 .findFirst()
                 .orElse(null);
     }
-
+    
+    /**
+     * Finds a teacher based on the provided user ID.
+     *
+     * @param id The ID of the teacher to find.
+     * @return The teacher with the specified ID, or null if not found.
+     */
     public Teacher findTeacherById(int id) {
         return teachers.stream()
                 .filter(teacher -> teacher.getUserId() == id)
                 .findFirst()
                 .orElse(null);
     }
+    
 
+    /**
+     * Finds a graduate student based on the provided user ID.
+     *
+     * @param id The ID of the graduate student to find.
+     * @return The graduate student with the specified ID, or null if not found.
+     */
     public GraduateStudent findGraduateStudentById(int id) {
         return graduateStudents.stream()
                 .filter(grad -> grad.getUserId() == id)
                 .findFirst()
                 .orElse(null);
     }
-
+    
+    /**
+     * Finds a employee based on the provided user ID.
+     *
+     * @param id The ID of the employee to find.
+     * @return The employee with the specified ID, or null if not found.
+     */
     public Employee findEmployeeById(int id) {
         return employees.stream()
                 .filter(emp -> emp.getUserId() == id)
                 .findFirst()
                 .orElse(null);
     }
+    
+    /**
+     * Finds a dean based on the provided user ID.
+     *
+     * @param id The ID of the dean to find.
+     * @return The dean with the specified ID, or null if not found.
+     */
     public Dean findDeanById(int id) {
         return deans.stream()
                 .filter(dean -> dean.getUserId() == id)
                 .findFirst()
                 .orElse(null);
     }
+    
+    /**
+     * Finds a TechSupportSpecialist based on the provided user ID.
+     *
+     * @param id The ID of the TechSupportSpecialist to find.
+     * @return The TechSupportSpecialist with the specified ID, or null if not found.
+     */
     public TechSupportSpecialist findTechSupportSpecialistById(int id) {
         return techSupportSpecialists.stream()
                 .filter(tech -> tech.getUserId() == id)
                 .findFirst()
                 .orElse(null);
     }
+    
+    /**
+     * Finds a manager based on the provided user ID.
+     *
+     * @param id The ID of the manager to find.
+     * @return The manager with the specified ID, or null if not found.
+     */
 	public Manager findManagerById(int id) {
 		// TODO Auto-generated method stub
 		return managers.stream()
@@ -512,6 +535,12 @@ public class Database implements Serializable{
                 .findFirst()
                 .orElse(null);
 	}
+	
+	/**
+     * Method to get the size of all vectors to obtain unique index.
+     *
+     * @return unique number.
+     */
 	public static int nextId() {
 	    int totalSize = INSTANCE.users.size() +
 	                    INSTANCE.employees.size() +
@@ -536,4 +565,5 @@ public class Database implements Serializable{
 
 	    return totalSize + 1;
 	}
+	 // End of class definition
 }

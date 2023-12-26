@@ -7,6 +7,10 @@ import enums.UrgencyLevel;
 import users.Student;
 import users.Teacher;
 
+/**
+ * Represents a complaint in a university management system.
+ * This class encapsulates details of a complaint such as its urgency level, sender, receiver, and the complaint text.
+ */
 public class Complaint implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -16,9 +20,18 @@ public class Complaint implements Serializable{
 	private Teacher complaintSender;
 	private Student complaintReciever;
 	private String complaintText;
+	// Initializer block for complaintId
 	{
 		complaintId = Database.nextId();
 	}
+	  /**
+     * Constructs a Complaint with specified urgency level, receiver, and complaint text.
+     * The sender is not set in this constructor.
+     *
+     * @param urgencyLevel The urgency level of the complaint.
+     * @param complaintReceiver The student who is the receiver
+     * @param complaintText The student who is the receiver
+     */
 	public Complaint(UrgencyLevel urgencyLevel,Student complaintReciever,
 			String complaintText) {
 		this.urgencyLevel = urgencyLevel;
