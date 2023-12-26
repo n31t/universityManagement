@@ -504,4 +504,11 @@ public class Database implements Serializable{
                 .findFirst()
                 .orElse(null);
     }
+	public Manager findManagerById(int id) {
+		// TODO Auto-generated method stub
+		return managers.stream()
+                .filter(managr -> managr.getUserId() == id)
+                .findFirst()
+                .orElse(null);
+	}
 }

@@ -4,12 +4,18 @@ import java.io.BufferedReader;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Vector;
 
 import database.Database;
 import enums.DegreesType;
+import enums.ElectiveType;
+import enums.ManagerType;
 import enums.School;
+import enums.TeacherType;
 import exceptions.InvalidStudyYearException;
 import exceptions.InvalidSupervisorException;
+import researchWorks.Journal;
+import utility.Course;
 
 public class Admin extends Employee {
 
@@ -25,12 +31,55 @@ public class Admin extends Employee {
 	public void viewLogFiles(){
 		
 	}
-    public void updateUser() {
-    	
+	public void addUser() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+            System.out.println("Choose the type of user to add:");
+            System.out.println("1. Employee");
+            System.out.println("2. Manager");
+            System.out.println("3. Admin");
+            System.out.println("4. Dean");
+            System.out.println("5. Tech Support Specialist");
+            System.out.println("6. Student");
+            System.out.println("7. Graduate Student");
+            System.out.println("8. Teacher");
+
+            int choice = Integer.parseInt(reader.readLine());
+
+            switch (choice) {
+                case 1:
+                    addEmployee();
+                    break;
+                case 2:
+                    addManager();
+                    break;
+                case 3:
+                    addAdmin();
+                    break;
+                case 4:
+                    addDean();
+                    break;
+                case 5:
+                    addTechSupportSpecialist();
+                    break;
+                case 6:
+                    addStudent();
+                    break;
+                case 7:
+                    addGraduateStudent();
+                    break;
+                case 8:
+                    addTeacher();
+                    break;
+                default:
+                    System.out.println("Invalid choice. User not added.");
+            }
+        } catch (NumberFormatException | IOException e) {
+            System.out.println("Invalid input. Unable to add user.");
+        }
     }
-    public void addUser() {
-    	
-    }
+
     public void addStudent()  {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -116,8 +165,28 @@ public class Admin extends Employee {
     }
   
     public void addTeacher() {
-    	
-    } 
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+            System.out.println("Enter the teacher's name:");
+            String name = reader.readLine();
+            System.out.println("Enter the teacher's password:");
+            String password = reader.readLine();
+
+            System.out.println("Enter the teacher's type:");
+            String teacherTypeStr = reader.readLine();
+            TeacherType teacherType = TeacherType.valueOf(teacherTypeStr.toUpperCase());
+
+            Teacher newTeacher = new Teacher(teacherType, name, password);
+            Database.getInstance().getUsers().add(newTeacher);
+            Database.getInstance().getEmployees().add(newTeacher);
+            Database.getInstance().getTeachers().add(newTeacher);
+
+            System.out.println("Teacher added successfully!");
+        } catch (NumberFormatException | IOException e) {
+            System.out.println("Invalid input. Unable to add teacher.");
+        }
+    }
     public void addEmployee() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -144,8 +213,29 @@ public class Admin extends Employee {
         }
     }
     public void addManager() {
-    	
-    } 
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+            System.out.println("Enter the manager's name:");
+            String name = reader.readLine();
+
+            System.out.println("Enter the manager's password:");
+            String password = reader.readLine();
+
+            System.out.println("Enter the manager's type:");
+            String managerTypeStr = reader.readLine();
+            ManagerType managerType = ManagerType.valueOf(managerTypeStr.toUpperCase());
+
+            Manager newManager = new Manager(name, password, managerType);
+            Database.getInstance().getUsers().add(newManager);
+            Database.getInstance().getEmployees().add(newManager);
+            Database.getInstance().getManagers().add(newManager);
+
+            System.out.println("Manager added successfully!");
+        } catch (NumberFormatException | IOException e) {
+            System.out.println("Invalid input. Unable to add manager.");
+        }
+    }
     public void addAdmin() {
     	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -206,8 +296,49 @@ public class Admin extends Employee {
             System.out.println("Invalid input. Unable to add employee.");
         }
     }
- public void removeUser() {
-	 
+    public void removeUser() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+            System.out.println("Choose the type of user to remove:");
+            System.out.println("1. Employee");
+            System.out.println("2. Manager");
+            System.out.println("3. Dean");
+            System.out.println("4. Tech Support Specialist");
+            System.out.println("5. Student");
+            System.out.println("6. Graduate Student");
+            System.out.println("7. Teacher");
+
+            int choice = Integer.parseInt(reader.readLine());
+
+            switch (choice) {
+                case 1:
+                    removeEmployee();
+                    break;
+                case 2:
+                    removeManager();
+                    break;
+                case 3:
+                    removeDean();
+                    break;
+                case 4:
+                    removeTechSupportSpecialist();
+                    break;
+                case 5:
+                    removeStudent();
+                    break;
+                case 6:
+                    removeGraduateStudent();
+                    break;
+                case 7:
+                    removeTeacher();
+                    break;
+                default:
+                    System.out.println("Invalid choice. User not removed.");
+            }
+        } catch (NumberFormatException | IOException e) {
+            System.out.println("Invalid input. Unable to remove user.");
+        }
     }
     public void removeStudent() {
     	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -255,10 +386,27 @@ public class Admin extends Employee {
             System.out.println("Invalid input. Please enter a valid integer.");
         }
     } 
-    //Need fix
     public void removeTeacher() {
-    	
-    } 
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+            System.out.println("Enter the ID of the teacher you want to remove:");
+            int teacherIdToRemove = Integer.parseInt(reader.readLine());
+
+            Teacher teacherToRemove = Database.getInstance().findTeacherById(teacherIdToRemove);
+            if (teacherToRemove != null) {
+                Database.getInstance().getUsers().remove(teacherToRemove);
+                Database.getInstance().getEmployees().remove(teacherToRemove);
+                Database.getInstance().getTeachers().remove(teacherToRemove);
+
+                System.out.println("Teacher removed successfully!");
+            } else {
+                System.out.println("Teacher with ID " + teacherIdToRemove + " not found.");
+            }
+        } catch (NumberFormatException | IOException e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        }
+    }
     public void removeEmployee() {
     	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -280,7 +428,25 @@ public class Admin extends Employee {
         }
     } 
     public void removeManager() {
-    	
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+            System.out.println("Enter the ID of the manager you want to remove:");
+            int managerIdToRemove = Integer.parseInt(reader.readLine());
+
+            Manager managerToRemove = Database.getInstance().findManagerById(managerIdToRemove);
+            if (managerToRemove != null) {
+                Database.getInstance().getUsers().remove(managerToRemove);
+                Database.getInstance().getEmployees().remove(managerToRemove);
+                Database.getInstance().getManagers().remove(managerToRemove);
+
+                System.out.println("Manager removed successfully!");
+            } else {
+                System.out.println("Manager with ID " + managerIdToRemove + " not found.");
+            }
+        } catch (NumberFormatException | IOException e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        }
     } 
     public void removeDean() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -330,8 +496,157 @@ public class Admin extends Employee {
             System.out.println("Invalid input. Please enter a valid integer.");
         }
     }
-    public void showCommands() {
-    	
+    public void createCourse() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+            System.out.println("Enter the course name:");
+            String courseName = reader.readLine();
+
+            System.out.println("Enter the elective type (FREE, MAJOR, MINOR)");
+            String electiveTypeStr = reader.readLine();
+            ElectiveType electiveType = ElectiveType.valueOf(electiveTypeStr.toUpperCase());
+
+            System.out.println("Enter the schools for the course (separated by commas, for example , BUSINESS_SCHOOL,SCHOOL_OF_ENERGY,):");
+            String[] schoolStrArray = reader.readLine().split(",");
+            Vector<School> schools = new Vector<>();
+            for (String schoolStr : schoolStrArray) {
+                schools.add(School.valueOf(schoolStr.toUpperCase()));
+            }
+
+            System.out.println("Enter the cost in credits for the course:");
+            int costInCredits = Integer.parseInt(reader.readLine());
+
+            Course newCourse = new Course(courseName, electiveType, schools, costInCredits, new Vector<>());
+
+
+            System.out.println("Enter the IDs of the prerequisite courses for the course (separated by commas):");
+            String[] prereqIds = reader.readLine().split(",");
+            for (String prereqId : prereqIds) {
+                Course prereqCourse = Database.getInstance().findCourseById(Integer.parseInt(prereqId));
+                if (prereqCourse != null) {
+                    newCourse.addPrereq(prereqCourse);
+                } else {
+                    System.out.println("Prerequisite course with ID " + prereqId + " not found.");
+                }
+            }
+            Database.getInstance().getCourses().add(newCourse);
+
+            System.out.println("Course created successfully!");
+        } catch (NumberFormatException | IOException e) {
+            System.out.println("Invalid input. Unable to create the course.");
+        }
     }
-    
+    public void showCommands() {
+    	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        while (true) {
+        	//DB
+            try {
+				Database.getInstance().write();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            //DB
+        	
+            System.out.println("Admin Commands:");
+            
+            System.out.println("1. View Journals");
+            System.out.println("2. Subscribe to Journal");
+            System.out.println("3. Unsubscribe from Journal");
+            System.out.println("4. View Messages");
+            System.out.println("5. Clear Messages");
+            System.out.println("6. View News");
+            System.out.println("7. Change Language");
+            System.out.println("8. Change Password");
+            System.out.println("9. Exit");
+            System.out.println("10. Send Message"); //!
+            System.out.println("11. Send Request to Dean"); //!
+            System.out.println("12. Send Order"); //!
+            System.out.println("13. Add User");
+            System.out.println("14. Remove User");
+            System.out.println("15. Create course");
+
+            try {
+                int choice = Integer.parseInt(reader.readLine());
+
+                switch (choice) {
+                    case 1:
+                        viewJournals();
+                        break;
+                    case 2:
+                    	System.out.println("Enter the ID of the journal you want to subscribe to:");
+                        try {
+                            int journalIdToSubscribe = Integer.parseInt(reader.readLine());
+                            Journal journalToSubscribe = Database.getInstance().findJournalById(journalIdToSubscribe);
+                            if (journalToSubscribe != null) {
+                                subscribeToJournal(journalToSubscribe);
+                                System.out.println("Subscribed to journal successfully!");
+                            } else {
+                                System.out.println("Journal with ID " + journalIdToSubscribe + " not found.");
+                            }
+                        } catch (NumberFormatException | IOException e) {
+                            System.out.println("Invalid input. Please enter a valid integer.");
+                        }
+                        break;
+                    case 3:
+                        System.out.println("Enter the ID of the journal you want to unsubscribe from:");
+                        try {
+                            int journalIdToUnsubscribe = Integer.parseInt(reader.readLine());
+                            Journal journalToUnsubscribe = Database.getInstance().findJournalById(journalIdToUnsubscribe);
+                            if (journalToUnsubscribe != null) {
+                                unsubscribeFromJournal(journalToUnsubscribe);
+                                System.out.println("Unsubscribed from journal successfully!");
+                            } else {
+                                System.out.println("Journal with ID " + journalIdToUnsubscribe + " not found.");
+                            }
+                        } catch (NumberFormatException | IOException e) {
+                            System.out.println("Invalid input. Please enter a valid integer.");
+                        }
+                        break;
+                    case 4:
+                    	viewMessages();
+                        break;
+                    case 5:
+                    	clearMessages();
+                        break;
+                    case 6:
+                    	viewNews();
+                        break;
+                    case 7:
+                    	changeLanguage();
+                        break;
+                    case 8:
+                    	System.out.println("Enter your new password:");
+                        String newPassword = reader.readLine();
+                        setPassword(newPassword);
+                        System.out.println("Password changed successfully!");
+                        break;
+                    case 9:
+                        System.out.println("Exiting Employee commands.");
+                        return;
+                    case 10:
+                        sendMessage();
+                        break;
+                    case 11:
+                        sendRequestToDean();
+                        break;
+                    case 12:
+                    	sendOrder();
+                    	break;
+                    case 13:
+                    	addUser();
+                    	break;
+                    case 14:
+                    	removeUser();
+                    	break;
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                }
+            } catch (NumberFormatException | IOException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+            }
+        }
+    }
 }
