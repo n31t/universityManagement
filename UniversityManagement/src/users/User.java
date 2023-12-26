@@ -8,10 +8,10 @@ import java.util.Observer;
 import java.util.Vector;
 
 import database.Database;
+import exceptions.InvalidLanguageException;
 import languageManagement.*;
 import utility.*;
 import researchWorks.Journal;
-import universityManagement.InvalidLanguageException;
 
 @SuppressWarnings("deprecation")
 public class User implements Observer, Serializable {

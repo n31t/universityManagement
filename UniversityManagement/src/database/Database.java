@@ -1,5 +1,6 @@
 package database;
 
+
 import users.*;
 import utility.*;
 import researchWorks.*;
@@ -414,78 +415,93 @@ public class Database implements Serializable{
         }
     }
     public Journal findJournalById(int journalId) {
-        for (Journal journal : Database.getInstance().getJournals()) {
-            if (journal.getJournalId() == journalId) {
-                return journal;
-            }
-        }
-        return null;
-    } 
+        return Database.getInstance().getJournals()
+                .stream()
+                .filter(journal -> journal.getJournalId() == journalId)
+                .findFirst()
+                .orElse(null);
+    }
+
     public Request findRequestById(int requestId) {
-        for (Request r : Database.getInstance().getDeanRequests()) {
-            if (r.getRequestId() == requestId) {
-                return r;
-            }
-        }
-        return null;
+        return Database.getInstance().getDeanRequests()
+                .stream()
+                .filter(request -> request.getRequestId() == requestId)
+                .findFirst()
+                .orElse(null);
     }
+
     public ResearchProject findResearchProjectById(int id) {
-        for (ResearchProject project : researchProjects) {
-            if (project.getProjectId() == id) {
-                return project;
-            }
-        }
-        return null; 
+        return researchProjects.stream()
+                .filter(project -> project.getProjectId() == id)
+                .findFirst()
+                .orElse(null);
     }
-    
+
     public ResearcherDecorator findResearcherById(int id) {
-        for (ResearcherDecorator res : researchers) {
-            if (res.getUserId() == id) {
-                return res;
-            }
-        }
-        return null; 
+        return researchers.stream()
+                .filter(res -> res.getUserId() == id)
+                .findFirst()
+                .orElse(null);
     }
-    
+
     public Journal findJournalByAuthorId(int id) {
-        for (Journal journal : journals) {
-            if (journal.getAuthor().getUserId() == id) {
-                return journal;
-            }
-        }
-        return null;
+        return journals.stream()
+                .filter(journal -> journal.getAuthor().getUserId() == id)
+                .findFirst()
+                .orElse(null);
     }
-    
+
     public Student findStudentById(int id) {
-    	for (Student student : students) {
-            if (student.getUserId() == id) {
-                return student;
-            }
-        }
-        return null;
+        return students.stream()
+                .filter(student -> student.getUserId() == id)
+                .findFirst()
+                .orElse(null);
     }
+
     public Course findCourseById(int id) {
-    	for (Course course : courses) {
-            if (course.getCourseId() == id) {
-                return course;
-            }
-        }
-        return null;
+        return courses.stream()
+                .filter(course -> course.getCourseId() == id)
+                .findFirst()
+                .orElse(null);
     }
+
     public Organization findOrganizationById(int id) {
-    	for (Organization org : organizations) {
-            if (org.getOrganizationId() == id) {
-                return org;
-            }
-        }
-        return null;
+        return organizations.stream()
+                .filter(org -> org.getOrganizationId() == id)
+                .findFirst()
+                .orElse(null);
     }
+
     public Teacher findTeacherById(int id) {
-    	for (Teacher teach : teachers) {
-            if (teach.getUserId() == id) {
-                return teach;
-            }
-        }
-        return null;
+        return teachers.stream()
+                .filter(teacher -> teacher.getUserId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public GraduateStudent findGraduateStudentById(int id) {
+        return graduateStudents.stream()
+                .filter(grad -> grad.getUserId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public Employee findEmployeeById(int id) {
+        return employees.stream()
+                .filter(emp -> emp.getUserId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+    public Dean findDeanById(int id) {
+        return deans.stream()
+                .filter(dean -> dean.getUserId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+    public TechSupportSpecialist findTechSupportSpecialistById(int id) {
+        return techSupportSpecialists.stream()
+                .filter(tech -> tech.getUserId() == id)
+                .findFirst()
+                .orElse(null);
     }
 }

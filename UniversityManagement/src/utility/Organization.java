@@ -11,7 +11,6 @@ public class Organization implements Serializable{
 	private static int counterId;
 	private String name; 
 	private Student head;
-	private int numberOfMembers; //Need fix
 	{
 		organizationId = counterId++;
 	}
@@ -23,14 +22,10 @@ public class Organization implements Serializable{
 		super();
 		this.name = name;
 		this.head = head;
-		numberOfMembers = 1;
 	}
 	public int getOrganizationId() {
 		return this.organizationId;
 	}
-//	public void setOrganizationId(int organizationId) {
-//		this.organizationId=organizationId;
-//	}
 	
 	public String getName() {
 		return this.name;

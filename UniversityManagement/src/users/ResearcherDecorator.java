@@ -9,6 +9,7 @@ import java.util.Vector;
 import database.Database;
 import enums.Format;
 import researchWorks.*;
+import utility.News;
 
 public class ResearcherDecorator extends UserDecorator {
     private static final long serialVersionUID = 1L;
@@ -304,6 +305,32 @@ public class ResearcherDecorator extends UserDecorator {
             System.out.println("Invalid input. Please enter a valid integer.");
         }
     }
+    
+    void publishNews() {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+            System.out.println("Enter the ID of the research paper you want to include in the news:");
+            int paperId = Integer.parseInt(reader.readLine());
+            ResearchPaper paper = findResearchPaperById(paperId);
+
+            if (paper != null) {
+                News news = new News();
+                news.setTopic("New Research Paper Published");
+                news.setContent("Check out the latest research paper: " + paper.getTitle());
+                news.setPinned(true);
+
+                Database.getInstance().getNews().add(news);
+
+                System.out.println("News published successfully!");
+            } else {
+                System.out.println("Research Paper with ID " + paperId + " not found.");
+            }
+        } catch (NumberFormatException | IOException e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        }
+    }
+
     //Need fix
     void showResearcherCommands() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -334,6 +361,7 @@ public class ResearcherDecorator extends UserDecorator {
             System.out.println("13. Remove Paper from Project");
             System.out.println("14. View Citations");
             System.out.println("15. Create Research Paper");
+            System.out.println("16. Publish News");
 
             try {
                 int choice = Integer.parseInt(reader.readLine());
@@ -416,6 +444,9 @@ public class ResearcherDecorator extends UserDecorator {
                         break;
                     case 15:
                         createResearchPaper();
+                        break;
+                    case 16:
+                        publishNews();
                         break;
                     default:
                         System.out.println("Invalid choice. Please try again.");

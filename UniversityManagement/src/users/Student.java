@@ -9,8 +9,8 @@ import java.util.Vector;
 
 import database.Database;
 import enums.School;
+import exceptions.InvalidStudyYearException;
 import researchWorks.Journal;
-import universityManagement.InvalidStudyYearException;
 import utility.Lesson;
 import utility.Course;
 import utility.CourseForRegistration;
@@ -326,7 +326,7 @@ public class Student extends User implements InfoTeachers, CanViewCourses {
 	                if (prerequisitesMet) {
 	                    System.out.println("Course ID: " + course.getCourseId());
 	                    System.out.println("Course Name: " + course.getCourseName());
-
+	                    System.out.println("Cost in credits: " + course.getCostInCredits());
 	                    System.out.print("Lesson Days: ");
 	                    for (Lesson lesson : course.getLessons()) {
 	                        lesson.viewDays();
@@ -371,7 +371,7 @@ public class Student extends User implements InfoTeachers, CanViewCourses {
 		    for (Teacher teacher : Database.getInstance().getTeachers()) {
 		        System.out.println("Teacher ID: " + teacher.getUserId());
 		        System.out.println("Name: " + teacher.getName());
-		        System.out.println("Teacher Type: " + teacher.getTeacherType());
+		        System.out.println("Teacher Type: " + teacher.getType());
 		        System.out.println();
 		    }
 		}
