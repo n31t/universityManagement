@@ -643,7 +643,11 @@ public class Admin extends Employee {
                     	removeUser();
                     	break;
                     case 15:
-                    	viewLogFiles();
+                    	createCourse();
+                    	break;
+                    case 16:
+                    	this.viewLogFiles();
+                    	break;
                     default:
                         System.out.println("Invalid choice. Please try again.");
                 }
