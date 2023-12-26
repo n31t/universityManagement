@@ -6,18 +6,18 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Observable;
 
+import database.Database;
 import users.ResearcherDecorator;
 
 @SuppressWarnings("deprecation")
 public class Journal extends Observable implements UseResearchPapers, Serializable {
 	private static final long serialVersionUID = 1L;
 	private int journalId;
-	private static int idCounter = 0;
     private List<ResearchPaper> publishedPapers;
     private String journalName;
     private ResearcherDecorator author;
     {
-    	journalId = (idCounter++);
+    	journalId = Database.nextId();
     	this.publishedPapers = new ArrayList<>();
     }
     public Journal() {

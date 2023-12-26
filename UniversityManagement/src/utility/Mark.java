@@ -2,6 +2,8 @@ package utility;
 
 import java.io.Serializable;
 
+import database.Database;
+
 public class Mark implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int markId;
@@ -9,9 +11,8 @@ public class Mark implements Serializable{
 	private double secondAttestation = 0;
 	private double Final = 0;
 	
-	private static int count = 0;
 	{
-		markId = (count++);
+		markId =Database.nextId();
 	}
 	
 	public Mark() {

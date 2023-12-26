@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.NoSuchElementException;
 import java.util.Vector;
 
+import database.Database;
 import users.ResearcherDecorator;
 
 public class ResearchProject implements UseResearchPapers, Serializable {
@@ -13,10 +14,9 @@ public class ResearchProject implements UseResearchPapers, Serializable {
 	private String topic;
 	private Vector<ResearcherDecorator> participants;
 
-	 private static int count = 0; //Id
 	  
 	 {
-		 projectId = (count++);
+		 projectId = Database.nextId();
 		 publishedPapers = new Vector<ResearchPaper>();
 		 participants = new Vector<ResearcherDecorator>();
 	 }

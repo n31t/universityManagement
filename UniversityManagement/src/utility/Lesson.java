@@ -2,6 +2,7 @@ package utility;
 
 import java.util.Vector;
 
+import database.Database;
 import enums.LessonType;
 import enums.WeekDays;
 import users.Teacher;
@@ -10,7 +11,9 @@ public class Lesson {
 	private LessonType lessonType;
 	private Vector <WeekDays> days;
 	private Teacher teacher;
-
+	{
+		lessonId = Database.nextId();
+	}
 	
 	public Lesson() {
 		

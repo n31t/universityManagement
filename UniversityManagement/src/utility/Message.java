@@ -3,6 +3,7 @@ package utility;
 import java.io.Serializable;
 import java.util.Date;
 
+import database.Database;
 import users.Employee;
 import users.User;
 
@@ -10,13 +11,12 @@ import users.User;
 public class Message implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int messageId;
-	private static int counterId = 0;
 	private Employee sender;
 	private User reciever;
 	private String messageText;
 	private Date date = new Date(System.currentTimeMillis());
 	{
-		messageId = counterId++;
+		messageId = Database.nextId();
 	}
 
 	public Message() {

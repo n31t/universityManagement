@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date; 
 import java.util.Vector;
 
+import database.Database;
 import enums.Format;
 import users.ResearcherDecorator; 
  
@@ -18,10 +19,9 @@ public class ResearchPaper implements Serializable{
 	 private int citationsNumber; 
 	 private String doi; 
 	 
-	 private static int count = 0; //Id
 	  
 	 {
-		 paperId = (count++);
+		 paperId = Database.nextId();
 		 authors = new Vector<ResearcherDecorator>();
 	 }
 	 public ResearchPaper() {

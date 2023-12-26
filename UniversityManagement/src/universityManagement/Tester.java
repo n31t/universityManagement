@@ -14,9 +14,10 @@ import researchWorks.*;
 public class Tester {
 	public static void main( String args[]) throws InvalidStudyYearException, InvalidSupervisorException {
 		Employee a = new Employee("James" , "pas");
-		Employee b = new Employee("Joe" , "pas2");
+		
 		Dean c = new Dean("Dean" , "dean");
 		Database.getInstance().getUsers().add(a);
+		Employee b = new Employee("Joe" , "pas2");
 		Database.getInstance().getUsers().add(b);
 		Database.getInstance().getUsers().add(c);
 		
@@ -63,8 +64,10 @@ public class Tester {
         Database.getInstance().getStudents().add(student1);
         
         Student student = new Student("Amanzhol", "aaa", 1); 
-
+        System.out.println("student.getUserId()"+student.getUserId());/////////////////////////////////////////////
+        
         Database.getInstance().getUsers().add(student);
+        admin.viewUsers();
 		LoggingSystem.start();
 	}
 }

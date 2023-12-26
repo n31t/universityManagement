@@ -2,16 +2,17 @@ package utility;
 
 import java.io.Serializable;
 
+import database.Database;
+
 public class News implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int newsId;
-	private static int newsIdcounter;
 	private String topic;
     private String content;
 
     private boolean isPinned;
     {
-    	newsId = (newsIdcounter++);
+    	newsId = Database.nextId();
     } 
 	public News() {
 		

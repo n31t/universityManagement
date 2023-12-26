@@ -58,6 +58,7 @@ public class Database implements Serializable{
         techSupportSpecialists = new Vector<TechSupportSpecialist>();
         courses = new Vector<Course>();
         news = new Vector<News>();
+        coursesForRegistration = new Vector<CourseForRegistration>();
         organizations = new Vector<Organization>();
         researchers = new Vector<ResearcherDecorator>();
         complaints = new Vector<Complaint>();
@@ -510,5 +511,29 @@ public class Database implements Serializable{
                 .filter(managr -> managr.getUserId() == id)
                 .findFirst()
                 .orElse(null);
+	}
+	public static int nextId() {
+	    int totalSize = INSTANCE.users.size() +
+	                    INSTANCE.employees.size() +
+	                    INSTANCE.students.size() +
+	                    INSTANCE.graduateStudents.size() +
+	                    INSTANCE.admins.size() +
+	                    INSTANCE.managers.size() +
+	                    INSTANCE.teachers.size() +
+	                    INSTANCE.deans.size() +
+	                    INSTANCE.techSupportSpecialists.size() +
+	                    INSTANCE.courses.size() +
+	                    INSTANCE.coursesForRegistration.size() +
+	                    INSTANCE.news.size() +
+	                    INSTANCE.organizations.size() +
+	                    INSTANCE.researchers.size() +
+	                    INSTANCE.complaints.size() +
+	                    INSTANCE.researchPapers.size() +
+	                    INSTANCE.researchProjects.size() +
+	                    INSTANCE.journals.size() +
+	                    INSTANCE.lessons.size() +
+	                    INSTANCE.orders.size();
+
+	    return totalSize + 1;
 	}
 }

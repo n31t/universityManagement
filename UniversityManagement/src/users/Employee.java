@@ -15,9 +15,8 @@ import utility.Order;
 public class Employee extends User {
     private static final long serialVersionUID = 1L;
 	private int employeeId;
-    private static int countForEmployees = 0;
     {
-    	employeeId = (countForEmployees++);
+    	employeeId = Database.nextId();
     }
     public Employee() {
     	super();

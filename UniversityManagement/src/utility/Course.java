@@ -2,6 +2,7 @@ package utility;
 
 import java.util.Vector;
 
+import database.Database;
 import enums.ElectiveType;
 import enums.School;
 import users.Student;
@@ -22,9 +23,8 @@ public class Course implements Serializable{
 	private Map <Student,Mark> marks;
 	private Vector<Lesson> lessons;
 	
-	private static int count = 0;
 	{
-		courseId = (count++);
+		courseId = Database.nextId();
 		lessons = new Vector<Lesson>();
 		instructors = new Vector<Teacher>();
 		prereq = new Vector<Course>();

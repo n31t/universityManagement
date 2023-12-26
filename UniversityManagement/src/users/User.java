@@ -16,14 +16,14 @@ import researchWorks.Journal;
 @SuppressWarnings("deprecation")
 public class User implements Observer, Serializable {
 	private static final long serialVersionUID = 1L;
-	private static int count = 0;
     private int userId;
     private String name;
     private String password;
     private String journalNews ="";
     private Vector<Message> messages;
+
     {
-    	userId = (count++);
+    	userId = Database.nextId();;
     	messages = new Vector<Message>();
     }
     

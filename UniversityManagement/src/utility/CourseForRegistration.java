@@ -2,6 +2,7 @@ package utility;
 
 import java.io.Serializable;
 
+import database.Database;
 import users.Student;
 
 public class CourseForRegistration implements Serializable {
@@ -10,9 +11,8 @@ public class CourseForRegistration implements Serializable {
 	private Student student;
 	private Course course;
 	
-	private static int count = 0;
 	{
-		registrationId = (count++);
+		registrationId = Database.nextId();;
 	}
 	public CourseForRegistration() {
 		super();

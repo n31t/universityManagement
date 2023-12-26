@@ -2,6 +2,7 @@ package utility;
 
 import java.io.Serializable;
 
+import database.Database;
 import enums.Status;
 
 public class Request implements Serializable{
@@ -10,9 +11,8 @@ public class Request implements Serializable{
 	private String requestText;
 	private Status requestStatus;
 	
-	private static int count = 0;
 	{
-		requestId = (count++);
+		requestId = Database.nextId();
 	}
 	public Request(){
 		this.requestStatus = Status.UNKNOWN;

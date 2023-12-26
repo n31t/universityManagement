@@ -2,6 +2,7 @@ package utility;
 
 import java.io.Serializable;
 
+import database.Database;
 import enums.UrgencyLevel;
 import users.Student;
 import users.Teacher;
@@ -11,13 +12,12 @@ public class Complaint implements Serializable{
 
 	private int complaintId;
 
-	private static int counterId = 0;
 	private UrgencyLevel urgencyLevel;
 	private Teacher complaintSender;
 	private Student complaintReciever;
 	private String complaintText;
 	{
-		complaintId = counterId++;
+		complaintId = Database.nextId();
 	}
 	public Complaint(UrgencyLevel urgencyLevel,Student complaintReciever,
 			String complaintText) {
