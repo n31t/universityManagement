@@ -23,3 +23,5 @@ management-related tasks.
  They can manage their academic profile, view grades, register for courses, join or leave organizations, and interact with teachers.
  Also we have a graduate student version that can defend diploma. 7. Employee:
  This class includes specific commands related to employees, such as sending complaints, putting marks, and accessing the researcher menu.
+
+Each class has a specific role and set of responsibilities within the university system, reflecting the diverse functions and tasks carried out by different user roles.
